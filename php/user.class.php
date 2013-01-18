@@ -4,80 +4,86 @@ require_once('error_handler.php');
 
 class User
 {
-	private $mMysqli;
+	private $uMysqli;
 	private $username;
 	private $password;
 	private $staffid;
 	private $usergroup;
+	private $errlog;
 	
 	function __construct()
 	{
-		$this->mMysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
+		$this->uMysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 	}
 
 	public function __destruct()
 	{
-		$this->mMysqli->close();
+		//$this->uMysqli->close();
 	}
 	
-	public function authorize($name, $pass)
-	{
-		if($name != '' && $pass != '') {
-			// query to find if the username and password are a match
-			$query = "SELECT *
-					  FROM login
-					  WHERE username = '$name'
-					  AND password = '$pass'";			
-		}
-		// execute the query
-		$result = $this->mMysqli->query($query);
-		
-		if($result->num_rows) {
-			
-			while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-				$this->username = $name;
-				$this->password = $pass;
-				$this->usergroup = $row['usergroup'];
-				$this->staffid = $row['staff_id'];
+	public function auth($name, $pass) {
+		$n = $this->uMysqli->real_escape_string($name);
+		$p = $this->uMysqli->real_escape_string($pass);
+		if($n !='' && $p != '') {
+			$query = "SELECT * 
+				  	  FROM login 
+				  	  WHERE username LIKE '$n' 
+				  	  AND password LIKE '$p'";
+			$result = $this->uMysqli->query($query);			
+			if($result->num_rows){
+				while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+					$this->username = $row['username'];
+					$this->password = $row['password'];
+					$this->usergroup = $row['usergroup'];
+					$this->staffid = $row['staff_id'];
+				}
+				return TRUE;
 			}
-			
-			$result->close();
-			return true;
-			
-		} else {
-			
-			$result->close();
-			return false;
+			$this->errlog = "Authentication Failed";
+			return FALSE;
 		}
-		
+		$this->errlog = "Provide Missing Information";
+		return FALSE;
+	}
+
+	public function login($id) {
+		$n = $this->username;
+		$query = "INSERT INTO sessions 
+				  (session_id, username, date_created) 
+				  VALUES ('$id', '$n', NOW())";
+		$result = $this->uMysqli->query($query);
+
+		if($this->uMysqli->affected_rows) {
+			return TRUE;
+		}
+		return FALSE;
 	}
 	
-	public function rec_login($id) {
-		$name = $this->username;
+	public function rec_logout($id) {
+		$dbc = mysql_connect('localhost', 'web', 'W7x99XuQZXF46meD');
+		mysql_select_db('appcomp', $dbc);
+		$query = "UPDATE sessions
+				  SET date_destroyed = NOW()
+				  WHERE session_id = '$id'";
+		$result = mysql_query($query, $dbc);
 		
-		$query = "INSERT INTO sessions (session_id, username, date_created) VALUES ('" . $id . "', '" . $name . "', NOW())";
-		
-		// execute the query
-		//$result = $this->mMysqli->query($query);
-		/*
-		if($this->mMysqli->affected_rows()) {
-			$result->close();
-			return true;
-		} else {
-			$result->close();
-			return false;
+		if(mysql_affected_rows($dbc) > 0) {
+			$_SESSION = array();
+			session_destroy();
+			setcookie('PHPSESSID', '', time()-3600, '/', '', 0, 0);
+			mysql_close($dbc);
+			return TRUE;
 		}
-		*/
-		//$result->close();
+		mysql_close($dbc);
+		return FALSE;
 	}
 	
 	public function stats() {
 		$reference = array();
-		
 		$reference['username'] = $this->username;
 		$reference['usergroup'] = $this->usergroup;
 		$reference['staff_id'] = $this->staffid;
-		
+		$reference['error'] = $this->errlog;		
 		return $reference;
 	}
 }

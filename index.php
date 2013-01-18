@@ -15,19 +15,23 @@
 </head>
 
 <?php
-date_default_timezone_set('America/New_York');
 session_start();
+require_once ('php/user.class.php');
+date_default_timezone_set('America/New_York');
 
 if (isset($_SESSION['user'])) {
 	// if logged in, log out
 	$user = unserialize($_SESSION['user']);
-	unset($user);
+	if($user->rec_logout(session_id())) {
+		unset($user);
+	}
+	// display message in window
 	echo <<<EOT
 	<body>
-		<div>
+		<div id="log" class="out">
 			<h1>Logout</h1>
 			<table>
-				<tr><td>You are now logged out.<td><tr>
+				<tr><td>Your session has ended<td><tr>
 			</table>
 			<button id="reset">Login</button>
 		</div>
@@ -35,18 +39,19 @@ if (isset($_SESSION['user'])) {
 </html>
 EOT;
 
-	
 } else {
+	
 	// if not logged in, log in
 	echo <<<EOT
 	<body>
-		<div>
+		<div id="log" class="in">
 			<h1>Login</h1>
 			<table>
 				<tr><td><input id="name" type="text" /><td><label>Username</label></td></td></tr>
 				<tr><td><input id="pass" type="password" /><td><label>Password</label></td></td></tr>
 			</table>
-			<button id="login">Login</button>
+			<button id="submit">Submit</button>
+			<span id="response"></span>
 		</div>
 	</body>
 </html>

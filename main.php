@@ -34,11 +34,11 @@ echo <<<EOT
 					<tr>
 						<td>User</td>
 						<td>Login Time</td>
-						<td>*Account</td>
+						<td><a href="*">Account</a></td>
 						<td><a href="http://development/index.php">Logout</a></td>
 					</tr>
 				</table>
-				<h1>Title</h1>
+				<h1>applied Computing</h1>
 			</header>
 			<nav>
 				<table id="adminT">
@@ -65,48 +65,8 @@ echo <<<EOT
 					</table>
 				</div>
 				<div id="contentT">
-						<p class="cat">Cat1</p>
-						<div>
-							<p class="sub">Sub1</p>
-							<div class="title">
-								<p>Cont3A</p>
-								<p>Cont3B</p>
-								<p>Bot3C</p>
-								<p>Bot3D</p>
-							</div>
-							<p class="sub">Sub2</p>
-							<div class="title">
-								<p>Bot3A</p>
-								<p>Bot3B</p>
-								<p>Bot3C</p>
-								<p>Bot3D</p>
-							</div>
-						</div>
-						<p class="cat">Cat2</p>
-						<div>
-							<p class="sub">Sub1</p>
-							<div class="title">
-								<p>Bot3C</p>
-								<p>Bot3D</p>
-							</div>
-							<p class="sub">Sub2</p>
-							<div class="title">
-								<p>Bot3A</p>
-								<p>Bot3B</p>
-								<p>Bot3D</p>
-							</div>
-						</div>
-						<p class="cat">Cat3</p>
-						<div>
-							<p class="sub">Sub1</p>
-							<div class="title">
-								<p>Bot3A</p>
-								<p>Bot3B</p>
-								<p>Bot3C</p>
-								<p>Bot3D</p>
-							</div>
-						</div>			
-				</div>
+				
+				</div>		
 			</div>
 			<div id="breadcrumbT">
 				<table>
@@ -118,14 +78,14 @@ echo <<<EOT
 				</table>				
 			</div>
 			<div id="main">
-				This is the main content.
+
 			</div>
 			<footer>
 				<table id="footerT">
 					<tr>
-						<td>Link 1</td>
-						<td>Link 2</td>
-						<td>Link 3</td>
+						<td><a href="*">Contact</a></td>
+						<td><a href="http://enneadintranet/">Intranet</a></td>
+						<td><a href="http://www.ennead.com">Ennead</a></td>
 					</tr>					
 				</table>
 			</footer>

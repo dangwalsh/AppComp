@@ -8,24 +8,41 @@ body {
 	width: auto;
 	min-height: 600px;
 	min-width: 600px;
-
+	font-size: 12px;
 }
 
 header {
-	background: gray;
+
+}
+
+header h1 {
+	color: #EEEEEE;
+	font-size: 40px;
+	text-shadow: #BBBBBB 1px 1px 2px;
+	margin: 10px;
 }
 
 nav {
-	background: lightgray;
+	background-image: url('../svg/grad_log.svg');
+	color: #FFFFFF;
+	box-shadow: 0 2px 3px #999999;
+}
+nav td {
+	padding: 10px 20px 10px 20px;
+	cursor: pointer;
+	border-left: 1px solid #7C8AA5;
+	box-shadow: -1px 0 0 #4C5A75;
+	text-shadow: #555555 0 -1px;
 }
 
 footer {
-	background: gray;
+	background: #FAFAFA;
 	position: fixed;
 	width: 100%;
 	height: 30px;
 	bottom: 0;
 	left: 0;
+	border-top: 1px solid #DDDDDD;
 }
 
 h1 {
@@ -45,7 +62,12 @@ p {
 }
 
 a {
+	color: #005C9C;
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 div {
@@ -61,12 +83,7 @@ ul {
 }
 
 li {
-	background: none;
-	cursor: pointer;
-}
 
-li:hover {
-	background: red;
 }
 
 table {
@@ -75,24 +92,48 @@ table {
 }
 
 tr {
-	border: 1px solid black;
+
 }
 
-#contentT th {	
-	cursor: pointer;
-	text-align: left;
+td {
+	
 }
 
-#contentT th:hover {
-	background: lightgray;
+#log {
+	border: 1px solid #3D4B66;
+	color: #FFFFFF;
+	padding: 30px;
+	margin: auto;
+	margin-top: 30px;
+	background-image: url('../svg/grad_log.svg');
+	width: 240px;
+	height: 180px;
+	border-radius: 10px;
+	box-shadow: 3px 3px 7px #AAAAAA;
 }
 
-#navigationT td, #contentT td {
-	cursor: pointer;
+#log h1 {
+	text-shadow: #555555 -1px -1px;
+	margin: 10px;
 }
 
-#contentT td:hover {
+#log td {
+	padding: 10px;
+}
 
+#log input {
+	width: 120px;
+}
+
+#log button {
+	margin: 10px;
+	padding: 5px;
+	text-shadow: #FFFFFF 1px 1px 1px;
+	color: #3D4B66;
+}
+
+#log p {
+	padding: 0 0 0 10px;
 }
 
 #wrapper {
@@ -100,22 +141,40 @@ tr {
 }
 
 #accountT {
+	margin: 15px 0 0 0;
 	float: right;
+}
+
+#accountT td {
+	padding: 5px;
 }
 
 #adminT {
 	float: right;
 }
 
+#adminT td {
+	cursor: pointer;
+	border-left: 1px solid #7C8AA5;
+	box-shadow: -1px 0 0 #4C5A75;
+}
+
 #navigationT {
 	margin: 0 0 0 200px;
 }
 
+#navigationT {
+	border-right: 1px solid #7C8AA5;
+	box-shadow: 1px 0 0 #4C5A75;	
+}
+
 #sidebar {
-	background: darkgray;
 	width: 200px;
 	height: 100%;
 	float: left;
+	background-image: url('../svg/grad_side.svg');
+	border-right: 3px solid #FAFAFA;
+	box-shadow: 1px 1px 1px #DDDDDD;
 }
 
 #contentT {
@@ -123,7 +182,8 @@ tr {
 }
 
 #search {
-	background: sienna;
+	height: 18px;
+	border-bottom: 1px solid #DDDDDD;
 }
 
 #searchT {
@@ -131,16 +191,33 @@ tr {
 }
 
 #breadcrumbT {
-	background: brown;
+	border-bottom: 1px solid #DDDDDD;
+	font-size: 10px;
 	width: 100%;
+	height: 18px;
 }
 
 #main {
-	background: slategray;
+	padding: 20px;
+	margin: 0 0 0 200px;
+}
+
+#main p {
+	margin: 10px 0 10px 0;
+}
+
+#main li {
+	margin: 10px 50px 10px 30px;
 }
 
 #footerT {
 	margin: auto;
+	border-left: 1px solid #DDDDDD;
+}
+
+#footerT td {
+	border-right: 1px solid #DDDDDD;
+	padding: 8px;
 }
 
 .cat {
@@ -153,4 +230,12 @@ tr {
 
 .title {
 	margin: 0 0 0 30px;
+}
+
+.alert {
+	color: red;
+}
+
+.missing {
+	border: 1px solid red;
 }
