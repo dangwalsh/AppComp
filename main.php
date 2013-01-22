@@ -58,9 +58,8 @@ echo <<<EOT
 				<div id="search">
 					<table id="searchT">
 						<tr>
-							<td>I1</td>
-							<td>I2</td>
-							<td>I3</td>
+							<td><input id="search_field" type="text" /></td>
+							<td><button id="search_btn"><img src="images/search.png"></button></td>
 						</tr>
 					</table>
 				</div>

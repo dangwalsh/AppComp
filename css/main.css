@@ -9,6 +9,7 @@ body {
 	min-height: 600px;
 	min-width: 600px;
 	font-size: 12px;
+	color: #444444;
 }
 
 header {
@@ -83,7 +84,7 @@ ul {
 }
 
 li {
-
+	list-style: none;
 }
 
 table {
@@ -98,6 +99,13 @@ tr {
 td {
 	
 }
+
+#contentT img {
+	float: left;
+	padding: 2px;
+}
+
+
 
 #log {
 	border: 1px solid #3D4B66;
@@ -179,10 +187,26 @@ td {
 
 #contentT {
 	cursor: pointer;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+#contentT li {
+	margin: 5px 10px 5px 30px;
+	padding: 5px;
+	border-radius: 5px;
+	transition: background .125s ease-in-out;
+	-moz-transition: background .125s ease-in-out;
+	-webkit-transition: background .125s ease-in-out;
+	-o-transition: background .125s ease-in-out;
+	-ms-transition: background .125s ease-in-out;
+}
+
+#contentT li:hover {
+	background: #EEEEEE;
 }
 
 #search {
-	height: 18px;
+	height: 24px;
 	border-bottom: 1px solid #DDDDDD;
 }
 
@@ -190,11 +214,20 @@ td {
 	margin: auto;
 }
 
+#searchT input {
+	padding: 0;
+	margin: 2px;
+}
+
+#search_field {
+	height: 16px;
+}
+
 #breadcrumbT {
 	border-bottom: 1px solid #DDDDDD;
 	font-size: 10px;
 	width: 100%;
-	height: 18px;
+	height: 25px;
 }
 
 #main {
@@ -221,15 +254,34 @@ td {
 }
 
 .cat {
-	margin: 0 0 0 10px;
+	padding: 10px 10px 10px 10px;
+	transition: background .125s ease-in-out;
+	-moz-transition: background .125s ease-in-out;
+	-webkit-transition: background .125s ease-in-out;
+	-o-transition: background .125s ease-in-out;
+	-ms-transition: background .125s ease-in-out;
+}
+
+.cat:hover {
+	background-image: url('../svg/grad_side_hover.svg');
 }
 
 .sub {
-	margin: 0 0 0 20px;
+	padding: 10px 10px 10px 20px;
+	border-top: 1px solid #DDDDDD;
+	transition: background .125s ease-in-out;
+	-moz-transition: background .125s ease-in-out;
+	-webkit-transition: background .125s ease-in-out;
+	-o-transition: background .125s ease-in-out;
+	-ms-transition: background .125s ease-in-out;
+}	
+
+.sub:hover {
+	background-image: url('../svg/grad_side_hover.svg');
 }
 
 .title {
-	margin: 0 0 0 30px;
+
 }
 
 .alert {
@@ -239,3 +291,16 @@ td {
 .missing {
 	border: 1px solid red;
 }
+
+.expanded {
+	border-left: 2px solid #005C9C;
+}
+
+.rotate {
+	transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+}
+

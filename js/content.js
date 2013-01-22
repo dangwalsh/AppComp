@@ -67,17 +67,21 @@ function displayContent(data, textStatus)
 function controlSidebar()
 {
 	$('#contentT div').hide();
+	//$('#contentT div').removeClass('.expanded');
 	$('#contentT p.cat').click(function() {
 		$(this).next().toggle();
 		$('#contentT div p.sub').next().hide();
+		//$('#contentT div p.sub').next().removeClass('.expanded');
 	});
 	
 	$('#contentT div div').hide();
 	$('#contentT div p.sub').click(function() {
 		$(this).next().toggle();
+		$(this).find('>:first-child').toggleClass('rotate');//.attr('src','images/disclosure_down.png');
+		//$(this).addClass('expanded');
 	});
 	
-	$('#contentT div.title p').click(function(e) {
+	$('#contentT div.title li').click(function(e) {
 		getContent(e);
 	});
 }

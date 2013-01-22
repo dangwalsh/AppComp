@@ -59,6 +59,11 @@ $(document).ready( function() {
 	$('#navigationT tr td').click(function(e) {
 		getPageTable(e);
 	});
+	$('#search_btn').click(function() {
+		var word = $('#search_field').val();
+		alert(word);
+		userSearch(word);
+	});
 	// once a new table is populated the event handlers must be appended
 	controlSidebar();
 });
