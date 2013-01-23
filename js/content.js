@@ -66,19 +66,37 @@ function displayContent(data, textStatus)
 // control the display of the content browser
 function controlSidebar()
 {
-	$('#contentT div').hide();
-	//$('#contentT div').removeClass('.expanded');
+	//$('#contentT div').hide();
+	$('#contentT div div').addClass('collapsed');
+	$('#contentT div p.sub').addClass('collapsed');
+
 	$('#contentT p.cat').click(function() {
-		$(this).next().toggle();
+		$(this).next().toggle('fast', null);
 		$('#contentT div p.sub').next().hide();
-		//$('#contentT div p.sub').next().removeClass('.expanded');
 	});
 	
 	$('#contentT div div').hide();
 	$('#contentT div p.sub').click(function() {
-		$(this).next().toggle();
+		//$('#contentT div p.sub').removeClass('expanded');
+		//$('#contentT div p.sub').next().removeClass('expanded').hide();
+		$(this).removeClass('expanded');
+		$(this).next().toggle('fast', null);
 		$(this).find('>:first-child').toggleClass('rotate');//.attr('src','images/disclosure_down.png');
 		//$(this).addClass('expanded');
+		//$(this).next().addClass('expanded');
+	});
+	
+	$('#contentT li').click(function() {
+		$('#contentT div div').hide();		
+		$(this).parent().parent().show();
+		$('#contentT div div').removeClass('expanded');
+		$(this).parent().parent().addClass('expanded');
+		$('#contentT div p.sub').removeClass('expanded');
+		$(this).parent().parent().prev().addClass('expanded');
+		$('#contentT div p.sub img').removeClass('rotate');
+		$(this).parent().parent().prev().find('>:first-child').addClass('rotate');
+		$('#contentT li').removeClass('selected');
+		$(this).addClass('selected');
 	});
 	
 	$('#contentT div.title li').click(function(e) {

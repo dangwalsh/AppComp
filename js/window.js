@@ -28,6 +28,7 @@ $(window).scroll( function () {
 
 // event handlers for page browsing
 $(document).ready( function() {
+	
 	// erase errors when user starts typing
 	$('#name').click(function() {
 		$('#response')[0].innerHTML = "";
@@ -43,16 +44,20 @@ $(document).ready( function() {
 	});
 	// verify username and password
 	$('#submit').click(function() {
+		
 		$('#name').removeClass('missing');
 		$('#pass').removeClass('missing');
+		
 		var name = $('#name').val();
 		var pass = $('#pass').val();
+		
 		if (name == "") {
 			$('#name').addClass('missing');
 		}
 		if (pass == "") {
 			$('#pass').addClass('missing');
 		}
+		
 		getUser(name, pass);
 	});
 	// show the table of the page that is clicked	
@@ -61,10 +66,16 @@ $(document).ready( function() {
 	});
 	$('#search_btn').click(function() {
 		var word = $('#search_field').val();
-		alert(word);
-		userSearch(word);
+		//alert(word);
+		searchPageTable(word);
 	});
 	// once a new table is populated the event handlers must be appended
 	controlSidebar();
+	setNavColor();
+});
+
+$(window).load(function() {
+	$('body').hide();
+	$('body').fadeIn();
 });
 

@@ -24,7 +24,7 @@ if ($mode == 'getPageTable') {
 		//retrieve the content from the server
 		echo json_encode($page->getPageTable($table));
 	}
-} else if ($mode == 'userSearch') {
+} else if ($mode == 'searchPageTable') {
 	$table = $_POST['table'];
 	$word = $_POST['searchword'];
 	

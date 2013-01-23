@@ -1,8 +1,13 @@
 <?php
+require_once ('php/user.class.php');
+
 session_start();
+
+date_default_timezone_set('America/New_York');
 
 if (isset($_SESSION['user'])) {
 	$user = unserialize($_SESSION['user']);
+	$user->getUsername();
 } else {
 	echo "You are not authorized!";
 	exit();
@@ -32,13 +37,16 @@ echo <<<EOT
 			<header>			
 				<table id="accountT">
 					<tr>
-						<td>User</td>
-						<td>Login Time</td>
+						<td>
+EOT;
+echo "<strong>" . $user->getUsername() . "</strong></td><td>login: " . date('g:i a', $user->getLogtime());
+echo <<<EOT
+						</td>
 						<td><a href="*">Account</a></td>
 						<td><a href="http://development/index.php">Logout</a></td>
 					</tr>
 				</table>
-				<h1>applied Computing</h1>
+				<img src="images/appcomp.png">
 			</header>
 			<nav>
 				<table id="adminT">

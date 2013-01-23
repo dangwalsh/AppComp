@@ -6,14 +6,14 @@
 body {
 	font-family: Lucida Grande,Arial,Helvetica,sans-serif;
 	width: auto;
-	min-height: 600px;
-	min-width: 600px;
+	min-height: 800px;
+	min-width: 800px;
 	font-size: 12px;
 	color: #444444;
 }
 
 header {
-
+	padding: 10px 10px 8px 10px;
 }
 
 header h1 {
@@ -24,15 +24,12 @@ header h1 {
 }
 
 nav {
-	background-image: url('../svg/grad_log.svg');
 	color: #FFFFFF;
 	box-shadow: 0 2px 3px #999999;
 }
 nav td {
 	padding: 10px 20px 10px 20px;
 	cursor: pointer;
-	border-left: 1px solid #7C8AA5;
-	box-shadow: -1px 0 0 #4C5A75;
 	text-shadow: #555555 0 -1px;
 }
 
@@ -100,20 +97,13 @@ td {
 	
 }
 
-#contentT img {
-	float: left;
-	padding: 2px;
-}
-
-
-
 #log {
 	border: 1px solid #3D4B66;
 	color: #FFFFFF;
 	padding: 30px;
 	margin: auto;
 	margin-top: 30px;
-	background-image: url('../svg/grad_log.svg');
+	background-image: url('../svg/grad_nopage.svg');
 	width: 240px;
 	height: 180px;
 	border-radius: 10px;
@@ -149,7 +139,7 @@ td {
 }
 
 #accountT {
-	margin: 15px 0 0 0;
+	margin: 12px 0 0 0;
 	float: right;
 }
 
@@ -162,9 +152,7 @@ td {
 }
 
 #adminT td {
-	cursor: pointer;
-	border-left: 1px solid #7C8AA5;
-	box-shadow: -1px 0 0 #4C5A75;
+	cursor: pointer;;
 }
 
 #navigationT {
@@ -172,8 +160,7 @@ td {
 }
 
 #navigationT {
-	border-right: 1px solid #7C8AA5;
-	box-shadow: 1px 0 0 #4C5A75;	
+		
 }
 
 #sidebar {
@@ -190,8 +177,13 @@ td {
 	border-bottom: 1px solid #DDDDDD;
 }
 
+#contentT img {
+	float: left;
+	padding: 2px;
+}
+
 #contentT li {
-	margin: 5px 10px 5px 30px;
+	margin: 0 10px 0 30px;
 	padding: 5px;
 	border-radius: 5px;
 	transition: background .125s ease-in-out;
@@ -202,7 +194,7 @@ td {
 }
 
 #contentT li:hover {
-	background: #EEEEEE;
+	background: #E4E4E4;
 }
 
 #search {
@@ -227,12 +219,13 @@ td {
 	border-bottom: 1px solid #DDDDDD;
 	font-size: 10px;
 	width: 100%;
-	height: 25px;
+	height: 24px;
 }
 
 #main {
-	padding: 20px;
+	padding: 30px;
 	margin: 0 0 0 200px;
+	max-width: 800px;
 }
 
 #main p {
@@ -292,8 +285,13 @@ td {
 	border: 1px solid red;
 }
 
+.collapsed {
+	border-left: 3px solid #FAFAFA;
+}
+
 .expanded {
-	border-left: 2px solid #005C9C;
+	/*border-left: 3px solid #005C9C;*/
+	border-left: 3px solid #777777;
 }
 
 .rotate {
@@ -302,5 +300,78 @@ td {
 	-webkit-transform: rotate(90deg);
 	-o-transform: rotate(90deg);
 	-moz-transform: rotate(90deg);
+}
+
+.articles {
+	background-image: url('../svg/grad_articles.svg');		
+}
+
+.articles_table {
+	border-right: 1px solid #7C8AA5;
+	box-shadow: 1px 0 0 #4C5A75; 	
+}
+
+.articles_td {
+	border-left: 1px solid #7C8AA5;
+	box-shadow: -1px 0 0 #4C5A75;
+}
+
+.videos {
+	background-image: url('../svg/grad_videos.svg');	
+}
+
+.videos_table {
+	border-right: 1px solid #A57C8A;
+	box-shadow: 1px 0 0 #764D5B;
+}
+
+.videos_td {
+	border-left: 1px solid #A57C8A;
+	box-shadow: -1px 0 0 #764D5B;
+}
+
+.courses {
+	background-image: url('../svg/grad_courses.svg');	
+}
+
+.courses_table {
+	border-right: 1px solid #7CA58A;
+	box-shadow: 1px 0 0 #4D765B;
+}
+
+.courses_td {
+	border-left: 1px solid #7CA58A;
+	box-shadow: -1px 0 0 #4D765B;
+}
+
+.nopage {
+	background-image: url('../svg/grad_nopage.svg');
+}
+
+.nopage_table {
+	border-right: 1px solid #777777;
+	box-shadow: 1px 0 0 #444444;
+}
+
+.nopage_td {
+	border-left: 1px solid #777777;
+	box-shadow: -1px 0 0 #444444;	
+}
+
+.selected {
+	font-weight: 700;
+	color: #222222;
+}
+
+.articles_sel {
+	background-image: url('../svg/grad_articles_sel.svg');
+}
+
+.videos_sel {
+	background-image: url('../svg/grad_videos_sel.svg');
+}
+
+.courses_sel {
+	background-image: url('../svg/grad_courses_sel.svg');
 }
 

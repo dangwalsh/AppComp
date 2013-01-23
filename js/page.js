@@ -8,6 +8,8 @@ function getPageTable(e)
 {
 	// get the id number of the content that was clicked on
 	pageTable = e.target.id;
+	// change the color of the navigation bar
+	setNavColor();
 	// check for a valid id
 	if(pageTable != '') {
 		// build the JSON data field
@@ -80,16 +82,16 @@ function displayPageTable(data, textStatus)
 }
 
 // AJAX function that gets the content corresponding to the user search
-function userSearch(word)
+function searchPageTable(word)
 {
 	// get the id number of the content that was clicked on
-	alert(pageTable);
+	//alert(pageTable);
 	
 	// check for a valid id
 	if(pageTable != '' && word != '') {
 		// build the JSON data field
 		var params = {
-			mode: 'userSearch',
+			mode: 'searchPageTable',
 			table: pageTable, // this needs to come from the page click in the nav bar!!!!
 			searchword: word
 		};
@@ -110,5 +112,44 @@ function userSearch(word)
 				}
 			}
 		});		
+	}
+}
+
+function setNavColor()
+{
+	
+	var nbar = $('nav');
+	var ntable = $('#navigationT');
+	var ntd = $('#navigationT td');
+	var atd = $('#adminT td');
+	
+	nbar.removeClass();
+	ntable.removeClass();
+	ntd.removeClass();
+	atd.removeClass();
+	
+	if(pageTable == 'posts') {
+		nbar.addClass('articles');
+		ntable.addClass('articles_table');
+		ntd.addClass('articles_td');
+		atd.addClass('articles_td');
+		$('#posts').addClass('articles_sel');
+	} else if (pageTable == 'videos') {
+		nbar.addClass('videos');
+		ntable.addClass('videos_table');
+		ntd.addClass('videos_td');
+		atd.addClass('videos_td');
+		$('#videos').addClass('videos_sel');
+	} else if (pageTable == 'courses') {
+		nbar.addClass('courses');
+		ntable.addClass('courses_table');
+		ntd.addClass('courses_td');
+		atd.addClass('courses_td');
+		$('#courses').addClass('courses_sel');
+	} else {
+		nbar.addClass('nopage');
+		ntable.addClass('nopage_table');
+		ntd.addClass('nopage_td');
+		atd.addClass('nopage_td');
 	}
 }

@@ -15,8 +15,10 @@
 </head>
 
 <?php
-session_start();
 require_once ('php/user.class.php');
+
+session_start();
+
 date_default_timezone_set('America/New_York');
 
 if (isset($_SESSION['user'])) {

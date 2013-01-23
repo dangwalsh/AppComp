@@ -10,6 +10,17 @@ class User
 	private $staffid;
 	private $usergroup;
 	private $errlog;
+	private $logtime;
+	
+	public function getUsername() 
+	{
+		return $this->username;
+	}
+	
+	public function getLogtime()
+	{
+		return $this->logtime;
+	}
 	
 	function __construct()
 	{
@@ -36,6 +47,7 @@ class User
 					$this->password = $row['password'];
 					$this->usergroup = $row['usergroup'];
 					$this->staffid = $row['staff_id'];
+					$this->logtime = time();
 				}
 				return TRUE;
 			}

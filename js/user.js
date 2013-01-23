@@ -4,7 +4,6 @@
 
 function getUser(name, pass)
 {
-	
 	var params = {
 		mode: 'getUser',
 		name: name,
@@ -42,10 +41,12 @@ function displayWelcome(data, textStatus)
 		}	
 		$('#response')[0].innerHTML = htmlReference;
 	} else {
+		/*
 		htmlReference += "<p>Welcome <strong>" + data.username + "</strong></p>";
 		htmlReference += "<p>Your ID is: " + data.staff_id + "</p>";
 		htmlReference += "<p>Your GROUP is: " + data.usergroup + "</p>";
 		$('#response')[0].innerHTML = htmlReference;
+		*/
 		window.location = "main.php";
 	}
 		

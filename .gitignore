@@ -16,6 +16,10 @@ local.properties
 .settings/
 .loadpath
 
+# Assets
+*.mp4
+*.ogv
+
 # External tool builders
 .externalToolBuilders/
 
