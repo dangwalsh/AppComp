@@ -1,7 +1,7 @@
 /**
  * @author dwalsh
  */
-
+// 
 $(window).load( function () {
 	var n = $('nav');
 	var f = $('footer');
@@ -27,8 +27,7 @@ $(window).scroll( function () {
 });
 
 // event handlers for page browsing
-$(document).ready( function() {
-	
+$(document).ready( function() {	
 	// erase errors when user starts typing
 	$('#name').click(function() {
 		$('#response')[0].innerHTML = "";
@@ -42,12 +41,11 @@ $(document).ready( function() {
 	$('#reset').click(function() {
 		window.location = "index.php";
 	});
-	// verify username and password
+	// verify username and password and create user object or display error
 	$('#submit').click(function() {
 		
 		$('#name').removeClass('missing');
 		$('#pass').removeClass('missing');
-		
 		var name = $('#name').val();
 		var pass = $('#pass').val();
 		
@@ -60,20 +58,22 @@ $(document).ready( function() {
 		
 		getUser(name, pass);
 	});
+	// change the color of the navigation bar to match the page
+	setNavColor();
 	// show the table of the page that is clicked	
 	$('#navigationT tr td').click(function(e) {
 		getPageTable(e);
 	});
+	// get the key word and perform content search when clicked
 	$('#search_btn').click(function() {
 		var word = $('#search_field').val();
-		//alert(word);
 		searchPageTable(word);
 	});
 	// once a new table is populated the event handlers must be appended
 	controlSidebar();
-	setNavColor();
 });
 
+// perform fadein effect when page is loaded
 $(window).load(function() {
 	$('body').hide();
 	$('body').fadeIn();
