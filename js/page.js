@@ -84,10 +84,7 @@ function displayPageTable(data, textStatus)
 // AJAX function that gets the content corresponding to the user search
 function searchPageTable(word)
 {
-	// get the id number of the content that was clicked on
-	//alert(pageTable);
-	
-	// check for a valid id
+	// check for a valid table name and search word
 	if(pageTable != '' && word != '') {
 		// build the JSON data field
 		var params = {
@@ -116,8 +113,7 @@ function searchPageTable(word)
 }
 
 function setNavColor()
-{
-	
+{	
 	var nbar = $('nav');
 	var ntable = $('#navigationT');
 	var ntd = $('#navigationT td');

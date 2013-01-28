@@ -9,7 +9,6 @@ body {
 	min-height: 800px;
 	min-width: 800px;
 	font-size: 12px;
-	color: #444444;
 }
 
 header {
@@ -60,7 +59,7 @@ p {
 }
 
 a {
-	color: #005C9C;
+	color: #3385BC;
 	text-decoration: none;
 }
 
@@ -159,10 +158,6 @@ td {
 	margin: 0 0 0 200px;
 }
 
-#navigationT {
-		
-}
-
 #sidebar {
 	width: 200px;
 	height: 100%;
@@ -170,6 +165,7 @@ td {
 	background-image: url('../svg/grad_side.svg');
 	border-right: 3px solid #FAFAFA;
 	box-shadow: 1px 1px 1px #DDDDDD;
+	color: #444444;
 }
 
 #contentT {
@@ -286,12 +282,11 @@ td {
 }
 
 .collapsed {
-	border-left: 3px solid #FAFAFA;
+	border-left: 5px solid #FAFAFA;
 }
 
 .expanded {
-	/*border-left: 3px solid #005C9C;*/
-	border-left: 3px solid #777777;
+	border-left: 5px solid #3385BC;
 }
 
 .rotate {
@@ -316,6 +311,10 @@ td {
 	box-shadow: -1px 0 0 #4C5A75;
 }
 
+.articles_td:hover {
+	background: #3D4B66;
+}
+
 .videos {
 	background-image: url('../svg/grad_videos.svg');	
 }
@@ -328,6 +327,10 @@ td {
 .videos_td {
 	border-left: 1px solid #A57C8A;
 	box-shadow: -1px 0 0 #764D5B;
+}
+
+.videos_td:hover {
+	background: #764D5B;
 }
 
 .courses {
@@ -344,6 +347,10 @@ td {
 	box-shadow: -1px 0 0 #4D765B;
 }
 
+.courses_td:hover {
+	background: #4D765B;
+}
+
 .nopage {
 	background-image: url('../svg/grad_nopage.svg');
 }
@@ -358,6 +365,10 @@ td {
 	box-shadow: -1px 0 0 #444444;	
 }
 
+.nopage_td:hover {
+	background: #555555;
+}
+
 .selected {
 	font-weight: 700;
 	color: #222222;
@@ -365,13 +376,23 @@ td {
 
 .articles_sel {
 	background-image: url('../svg/grad_articles_sel.svg');
+	border-bottom: 1px solid #4D5B76;
 }
 
 .videos_sel {
 	background-image: url('../svg/grad_videos_sel.svg');
+	border-bottom: 1px solid #764D5B;
 }
 
 .courses_sel {
 	background-image: url('../svg/grad_courses_sel.svg');
+	border-bottom: 1px solid #4D765B;
 }
 
+.inactive {
+	opacity: .75;
+}
+
+.js {
+	display: none;
+}

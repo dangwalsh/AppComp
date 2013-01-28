@@ -72,18 +72,15 @@ function controlSidebar()
 
 	$('#contentT p.cat').click(function() {
 		$(this).next().toggle('fast', null);
-		$('#contentT div p.sub').next().hide();
+		$('#contentT div p.sub').next().hide().removeClass('expanded');
+		$('#contentT div p.sub img').removeClass('rotate');
 	});
 	
 	$('#contentT div div').hide();
 	$('#contentT div p.sub').click(function() {
-		//$('#contentT div p.sub').removeClass('expanded');
-		//$('#contentT div p.sub').next().removeClass('expanded').hide();
 		$(this).removeClass('expanded');
 		$(this).next().toggle('fast', null);
-		$(this).find('>:first-child').toggleClass('rotate');//.attr('src','images/disclosure_down.png');
-		//$(this).addClass('expanded');
-		//$(this).next().addClass('expanded');
+		$(this).find('>:first-child').toggleClass('rotate');
 	});
 	
 	$('#contentT li').click(function() {

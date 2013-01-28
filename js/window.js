@@ -1,8 +1,10 @@
 /**
  * @author dwalsh
  */
-// 
+
+// perform fadein and set sidebar height
 $(window).load( function () {
+	$('html').fadeIn().removeClass('js');
 	var n = $('nav');
 	var f = $('footer');
 	var s = $('#sidebar');
@@ -10,6 +12,7 @@ $(window).load( function () {
 	s.height(h);
 });
 
+// adjust sidebar height when window is resized
 $(window).resize( function () {
 	var n = $('nav');
 	var f = $('footer');
@@ -18,6 +21,7 @@ $(window).resize( function () {
 	s.height(sh);
 });
 
+// adjust sidebar height when window is scrolled
 $(window).scroll( function () {
 	var n = $('nav');
 	var f = $('footer');
@@ -33,14 +37,17 @@ $(document).ready( function() {
 		$('#response')[0].innerHTML = "";
 		$('#name').removeClass('missing');
 	});
+	
 	$('#pass').click(function() {
 		$('#response')[0].innerHTML = "";
 		$('#pass').removeClass('missing');
 	});
+	
 	// allow user to log back in
 	$('#reset').click(function() {
 		window.location = "index.php";
 	});
+	
 	// verify username and password and create user object or display error
 	$('#submit').click(function() {
 		
@@ -58,24 +65,22 @@ $(document).ready( function() {
 		
 		getUser(name, pass);
 	});
-	// change the color of the navigation bar to match the page
+	
+	// change the color of the navigation bar to match the page--before getting new content from DB
 	setNavColor();
+	
 	// show the table of the page that is clicked	
 	$('#navigationT tr td').click(function(e) {
 		getPageTable(e);
 	});
+	
 	// get the key word and perform content search when clicked
 	$('#search_btn').click(function() {
 		var word = $('#search_field').val();
 		searchPageTable(word);
 	});
+	
 	// once a new table is populated the event handlers must be appended
 	controlSidebar();
-});
-
-// perform fadein effect when page is loaded
-$(window).load(function() {
-	$('body').hide();
-	$('body').fadeIn();
 });
 

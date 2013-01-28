@@ -74,7 +74,7 @@ class Page
 		$result1 = $this->mMysqli->query($query1);
 		
 		if ($result1->num_rows) {
-			
+		//if (false) {	
 			$query2 = "SELECT category, subcategory, id, title
 					   FROM $table
 					   WHERE MATCH (title, content)
@@ -99,6 +99,7 @@ class Page
 		$reference = array();
 		// see if there are any results
 		if ($result2->num_rows) {
+		//if (false) {
 			// loop through all the fetched content
 			while ($row = $result2->fetch_array(MYSQLI_ASSOC)) {
 				$reference = array();								
