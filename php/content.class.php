@@ -57,5 +57,40 @@ class Content
 		return $response;
 		
 	}
+
+	public function getStaffSummary($id, $table)
+	{
+		$id = $this->mMysqli->real_escape_string($id);
+		$table = $this->mMysqli->real_escape_string($table);
+		
+		if($id != '') {
+			
+			// this query needs to use the $table variable once it is functional
+			$query = "SELECT last_name, first_name, COUNT(last_name) as count
+					  FROM staff";
+		}
+		// execute the query
+		$result = $this->mMysqli->query($query);
+		
+		// build the JSON response
+		$response = array();
+		$response['references'] = array();
+		// see if there are any results
+		if($result->num_rows) {
+			// loop through all the fetched content
+			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+				$reference = array();
+				$reference['last_name'] = $row['last_name'];
+				$reference['first_name'] = $row['first_name'];
+				$reference['count'] = $row['count'];
+				array_push($response['references'], $reference);
+			}
+			// close the database connection as soon as possible
+			$result->close();
+		}		
+		//return the JSON response
+		return $response;	
+	}
+	
 }
 ?>

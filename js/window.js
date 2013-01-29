@@ -32,6 +32,9 @@ $(window).scroll( function () {
 
 // event handlers for page browsing
 $(document).ready( function() {	
+	
+	///////////// LOGIN PAGE ////////////////
+	
 	// erase errors when user starts typing
 	$('#name').click(function() {
 		$('#response')[0].innerHTML = "";
@@ -48,7 +51,8 @@ $(document).ready( function() {
 		window.location = "index.php";
 	});
 	
-	// verify username and password and create user object or display error
+	// verify username and password and create 
+	//user object or display error
 	$('#submit').click(function() {
 		
 		$('#name').removeClass('missing');
@@ -66,21 +70,67 @@ $(document).ready( function() {
 		getUser(name, pass);
 	});
 	
-	// change the color of the navigation bar to match the page--before getting new content from DB
+	///////////// MAIN PAGE ////////////////
+	
+	// change the color of the navigation bar to match 
+	// the page--before getting new content from DB
 	setNavColor();
 	
 	// show the table of the page that is clicked	
-	$('#navigationT tr td').click(function(e) {
+	$('nav tr td').click(function(e) {
 		getPageTable(e);
 	});
-	
+
 	// get the key word and perform content search when clicked
 	$('#search_btn').click(function() {
 		var word = $('#search_field').val();
 		searchPageTable(word);
 	});
 	
-	// once a new table is populated the event handlers must be appended
+	// once a new table is populated the event handlers 
+	// must be appended
 	controlSidebar();
 });
 
+// control the display of the content browser
+function controlSidebar()
+{
+	//$('#contentT div').hide();
+	$('#contentT div div').addClass('collapsed');
+	$('#contentT div p.sub').addClass('collapsed');
+
+	$('#contentT p.cat').click(function() {
+		$(this).next().toggle('fast', null);
+		$('#contentT div p.sub').next().hide().removeClass('expanded');
+		$('#contentT div p.sub img').removeClass('rotate');
+	});
+	
+	$('#contentT div div').hide();
+	$('#contentT div p.sub').click(function() {
+		$(this).removeClass('expanded');
+		$(this).next().toggle('fast', null);
+		$(this).find('>:first-child').toggleClass('rotate');
+	});
+	
+	$('#contentT li').click(function() {
+		$('#contentT div div').hide();		
+		$(this).parent().parent().show();
+		$('#contentT div div').removeClass('expanded');
+		$(this).parent().parent().addClass('expanded');
+		$('#contentT div p.sub').removeClass('expanded');
+		$(this).parent().parent().prev().addClass('expanded');
+		$('#contentT div p.sub img').removeClass('rotate');
+		$(this).parent().parent().prev().find('>:first-child').addClass('rotate');
+		$('#contentT li').removeClass('selected');
+		$(this).addClass('selected');
+	});
+	
+	$('#contentT div.title li').click(function(e) {
+		if(pageTable != 'admin') {
+			getContent(e);
+		} else {
+			getStaffSummary(e);
+		}
+		
+	});
+}

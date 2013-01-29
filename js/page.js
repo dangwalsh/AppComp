@@ -117,6 +117,7 @@ function setNavColor()
 	var nbar = $('nav');
 	var ntable = $('#navigationT');
 	var ntd = $('#navigationT td');
+	var atable = $('#adminT');
 	var atd = $('#adminT td');
 	
 	nbar.removeClass();
@@ -128,24 +129,28 @@ function setNavColor()
 		nbar.addClass('articles');
 		ntable.addClass('articles_table');
 		ntd.addClass('articles_td');
+		atable.addClass('articles_table');
 		atd.addClass('articles_td');
 		$('#posts').addClass('articles_sel');
 	} else if (pageTable == 'videos') {
 		nbar.addClass('videos');
 		ntable.addClass('videos_table');
 		ntd.addClass('videos_td');
+		atable.addClass('videos_table');
 		atd.addClass('videos_td');
 		$('#videos').addClass('videos_sel');
 	} else if (pageTable == 'courses') {
 		nbar.addClass('courses');
 		ntable.addClass('courses_table');
 		ntd.addClass('courses_td');
+		atable.addClass('courses_table');
 		atd.addClass('courses_td');
 		$('#courses').addClass('courses_sel');
 	} else {
 		nbar.addClass('nopage');
 		ntable.addClass('nopage_table');
 		ntd.addClass('nopage_td');
+		atable.addClass('nopage_table');
 		atd.addClass('nopage_td');
 	}
 }

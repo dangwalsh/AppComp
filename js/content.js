@@ -63,43 +63,53 @@ function displayContent(data, textStatus)
 	});
 }
 
-// control the display of the content browser
-function controlSidebar()
+// AJAX function that gets the content corresponding to the user click
+function getStaffSummary(e)
 {
-	//$('#contentT div').hide();
-	$('#contentT div div').addClass('collapsed');
-	$('#contentT div p.sub').addClass('collapsed');
-
-	$('#contentT p.cat').click(function() {
-		$(this).next().toggle('fast', null);
-		$('#contentT div p.sub').next().hide().removeClass('expanded');
-		$('#contentT div p.sub img').removeClass('rotate');
-	});
-	
-	$('#contentT div div').hide();
-	$('#contentT div p.sub').click(function() {
-		$(this).removeClass('expanded');
-		$(this).next().toggle('fast', null);
-		$(this).find('>:first-child').toggleClass('rotate');
-	});
-	
-	$('#contentT li').click(function() {
-		$('#contentT div div').hide();		
-		$(this).parent().parent().show();
-		$('#contentT div div').removeClass('expanded');
-		$(this).parent().parent().addClass('expanded');
-		$('#contentT div p.sub').removeClass('expanded');
-		$(this).parent().parent().prev().addClass('expanded');
-		$('#contentT div p.sub img').removeClass('rotate');
-		$(this).parent().parent().prev().find('>:first-child').addClass('rotate');
-		$('#contentT li').removeClass('selected');
-		$(this).addClass('selected');
-	});
-	
-	$('#contentT div.title li').click(function(e) {
-		getContent(e);
-	});
+	// get the id number of the content that was clicked on
+	var number = e.target.id;
+	// check for a valid id
+	if(number != '') {
+		// build the JSON data field
+		var params = {
+		  	mode: 'GetStaffSummary',
+			id: number,
+			table: pageTable // this needs to come from the page click in the nav bar!!!!
+		};
+		// build the JSON AJAX statement
+		$.ajax({
+			url: 'php/content.php',
+			data: $.param(params),
+			type: 'POST',
+			dataType: 'json',
+			error: function(xhr, textStatus, errorThrown) {
+				displayError(textStatus);
+			},
+			success: function(data, textStatus) {
+				if (data.errno != null) {
+					displayPHPError(data);
+				} else {
+					testQuery(data);
+				}
+			}
+		});		
+	}
 }
 
+// function to display the AJAX return content on the page
+function testQuery(data, textStatus)
+{
+	var htmlReference = "";
+	htmlReference += "<table>";
+	// loop through results	
+	$.each(data.references, function(i, reference) {
+		// compose HTML code that displays the content
+		htmlReference += "<tr><td>" + reference.last_name + "</td><td>" + reference.first_name + "</td><td>" + reference.count + "</td></tr>";				
+	});
+	
+	htmlReference += "</table>";
+	// insert the new HTML into the document
+	$('#main')[0].innerHTML = htmlReference;
+}
 
 

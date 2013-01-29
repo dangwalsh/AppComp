@@ -51,7 +51,7 @@ echo <<<EOT
 			<nav>
 				<table id="adminT">
 					<tr>
-						<td>Admin</td>
+						<td id="admin">Admin</td>
 					</tr>
 				</table>
 				<table id="navigationT">
