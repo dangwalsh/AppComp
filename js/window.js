@@ -129,8 +129,7 @@ function controlSidebar()
 		if(pageTable != 'admin') {
 			getContent(e);
 		} else {
-			getStaffSummary(e);
-		}
-		
+			getStaffSummary(e);			
+		}		
 	});
 }

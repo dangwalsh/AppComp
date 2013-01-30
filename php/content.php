@@ -8,42 +8,47 @@ $mode = $_POST['mode'];
 $content = new Content();
 
 //if the operation is RetrieveContent
-if($mode == 'GetContent')
-{
+if($mode == 'GetContent') {
 	// retrieve the action parameters from client request
 	$id = $_POST['id'];
 	$table = $_POST['table'];
 	
 	// check for valid id
 	if($id != '') {
-		// clear out the output buffer
-		if(ob_get_length()) ob_clean();
-		// send headers so that browser doesn't cache content
-		header('Expires: Mon, 26 July 1997 05:00:00 GMT');
-		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . 'GMT');
-		header('Cache-Control: no-cache, must-revalidate');
-		header('Pragma: no-cache');
-		header('Content-Type: application/json');
+		sendHeaders();
 		//retrieve the content from the server
 		echo json_encode($content->getContent($id, $table));
 	}
-} else if ($mode == 'GetStaffSummary')
-{
+} else if ($mode == 'GetStaffSummary') {
 	// retrieve the action parameters from client request
-	$id = $_POST['id'];
-	$table = $_POST['table'];	
+	$id = $_POST['id'];	
 	
 	if($id != '') {
-		// clear out the output buffer
-		if(ob_get_length()) ob_clean();
-		// send headers so that browser doesn't cache content
-		header('Expires: Mon, 26 July 1997 05:00:00 GMT');
-		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . 'GMT');
-		header('Cache-Control: no-cache, must-revalidate');
-		header('Pragma: no-cache');
-		header('Content-Type: application/json');
+		sendHeaders();
 		//retrieve the content from the server
-		echo json_encode($content->getStaffSummary($id, $table));
+		echo json_encode($content->getStaffSummary($id));
+	}
+} else if ($mode == 'GetCourseSummary') {
+	// retrieve the action parameters from client request
+	$id = $_POST['id'];
+	
+	if($id != '') {
+		sendHeaders();
+		//retrieve the content from the server
+		echo json_encode($content->getCourseSummary($id));
 	}
 }
+
+function sendHeaders()
+{
+	// clear out the output buffer
+	if(ob_get_length()) ob_clean();
+	// send headers so that browser doesn't cache content
+	header('Expires: Mon, 26 July 1997 05:00:00 GMT');
+	header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . 'GMT');
+	header('Cache-Control: no-cache, must-revalidate');
+	header('Pragma: no-cache');
+	header('Content-Type: application/json');
+}
+
 ?>

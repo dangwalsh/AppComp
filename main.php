@@ -30,6 +30,7 @@ echo <<<EOT
 	<script type="text/javascript" src="js/window.js"></script>
 	<script type="text/javascript" src="js/page.js"></script>
 	<script type="text/javascript" src="js/content.js"></script>
+	<script type="text/javascript" src="js/statistics.js"></script>
 </head>
 
 	<body>
@@ -78,9 +79,9 @@ echo <<<EOT
 			<div id="breadcrumbT">
 				<table>
 					<tr>
-						<td>Level 1</td>
-						<td>Level 2</td>
-						<td>Level 3</td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>					
 				</table>				
 			</div>
