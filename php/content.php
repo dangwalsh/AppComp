@@ -37,6 +37,42 @@ if($mode == 'GetContent') {
 		//retrieve the content from the server
 		echo json_encode($content->getCourseSummary($id));
 	}
+} else if ($mode == 'GetStaffCourseDetail') {
+	// retrieve the action parameters from client request
+	$id = $_POST['id'];
+	
+	if($id != '') {
+		sendHeaders();
+		//retrieve the content from the server
+		echo json_encode($content->getStaffCourseDetail($id));
+	}
+} else if ($mode == 'GetStaffProjectDetail') {
+	// retrieve the action parameters from client request
+	$id = $_POST['id'];
+	
+	if($id != '') {
+		sendHeaders();
+		//retrieve the content from the server
+		echo json_encode($content->getStaffProjectDetail($id));
+	}
+} else if ($mode == 'GetCourseDetail') {
+	// retrieve the action parameters from client request
+	$id = $_POST['id'];
+	
+	if($id != '') {
+		sendHeaders();
+		//retrieve the content from the server
+		echo json_encode($content->getCourseDetail($id));
+	}
+} else if ($mode == 'GetCourseStaffDetail') {
+	// retrieve the action parameters from client request
+	$id = $_POST['id'];
+	
+	if($id != '') {
+		sendHeaders();
+		//retrieve the content from the server
+		echo json_encode($content->getCourseStaffDetail($id));
+	}
 }
 
 function sendHeaders()

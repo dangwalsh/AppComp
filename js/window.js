@@ -90,6 +90,7 @@ $(document).ready( function() {
 	// once a new table is populated the event handlers 
 	// must be appended
 	controlSidebar();
+	controlTable();	
 });
 
 // control the display of the content browser
@@ -128,8 +129,18 @@ function controlSidebar()
 	$('#contentT div.title li').click(function(e) {
 		if(pageTable != 'admin') {
 			getContent(e);
-		} else {
-			getStaffSummary(e);			
-		}		
+		} else if (e.target.id == 'staff'){
+			getStaffSummary(e);	
+		} else if (e.target.id == 'courses'){
+			getCourseSummary(e);	
+		}	
 	});
+}
+
+function controlTable() 
+{
+	$('#main').on('click', 'table tr td:first-child', function(e) {
+		var t = $(this).parent().parent().parent();  		
+   		getDetail(e, t);
+	});	
 }

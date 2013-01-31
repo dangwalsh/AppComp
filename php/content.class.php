@@ -62,7 +62,7 @@ class Content
 		
 		if($id != '') {
 			// this query needs to use the $table variable once it is functional
-			$query = "SELECT s.last_name, s.first_name, t.tot, ds.des, dc.doc, co.coo
+			$query = "SELECT s.staff_id, s.last_name, s.first_name, t.tot, ds.des, dc.doc, co.coo
 					   FROM staff s
 							JOIN (SELECT staff_id, COUNT(staff_id) AS tot
                      			FROM staff_courses
@@ -88,6 +88,7 @@ class Content
 			// loop through all the fetched content
 			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 				$reference = array();
+				$reference['staff_id'] = $row['staff_id'];
 				$reference['last_name'] = $row['last_name'];
 				$reference['first_name'] = $row['first_name'];
 				$reference['total'] = $row['tot'];
@@ -136,6 +137,150 @@ class Content
 		}		
 		//return the JSON response
 		return $response;
-	}	
+	}
+
+	public function getStaffCourseDetail($id)
+	{
+		$id = $this->mMysqli->real_escape_string($id);
+		
+		if($id != '') {
+			// this query needs to use the $table variable once it is functional
+			$query = "SELECT c.id, c.title, sc.date 
+						FROM courses c
+							JOIN (SELECT course_id, date
+                     			FROM staff_courses 
+                     			WHERE staff_id = $id) 
+                     			AS sc ON c.id = sc.course_id";					  
+		}
+		// execute the query
+		$result = $this->mMysqli->query($query);
+		
+		// build the JSON response
+		$response = array();
+		$response['references'] = array();
+		// see if there are any results
+		if($result->num_rows) {
+			// loop through all the fetched content
+			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+				$reference = array();
+				$reference['id'] = $row['id'];
+				$reference['title'] = $row['title'];
+				$reference['date'] = $row['date'];
+				array_push($response['references'], $reference);
+			}
+			// close the database connection as soon as possible
+			$result->close();
+		}		
+		//return the JSON response
+		return $response;
+	}
+
+	public function getStaffProjectDetail($id)
+	{
+		$id = $this->mMysqli->real_escape_string($id);
+		
+		if($id != '') {
+			// this query needs to use the $table variable once it is functional
+			$query = "SELECT p.id, p.title, sp.date 
+						FROM projects p
+							JOIN (SELECT proj_id, date
+                     			FROM staff_projects 
+                     			WHERE staff_id = $id) 
+                     			AS sp ON p.id = sp.proj_id";					  
+		}
+		// execute the query
+		$result = $this->mMysqli->query($query);
+		
+		// build the JSON response
+		$response = array();
+		$response['references'] = array();
+		// see if there are any results
+		if($result->num_rows) {
+			// loop through all the fetched content
+			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+				$reference = array();
+				$reference['id'] = $row['id'];
+				$reference['title'] = $row['title'];
+				$reference['date'] = $row['date'];
+				array_push($response['references'], $reference);
+			}
+			// close the database connection as soon as possible
+			$result->close();
+		}		
+		//return the JSON response
+		return $response;
+	}
+
+	public function getCourseDetail($id)
+	{
+		$id = $this->mMysqli->real_escape_string($id);
+		
+		if($id != '') {
+			// this query needs to use the $table variable once it is functional
+           $query = "SELECT c.id, c.title, c.date_created, c.content
+						FROM courses c 
+						WHERE c.id='$id'";	                    						  
+		}
+		// execute the query
+		$result = $this->mMysqli->query($query);
+		
+		// build the JSON response
+		$response = array();
+		$response['references'] = array();
+		// see if there are any results
+		if($result->num_rows) {
+			// loop through all the fetched content
+			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+				$reference = array();
+				$reference['id'] = $row['id'];
+				$reference['title'] = $row['title'];
+				$reference['date'] = $row['date_created'];
+				$reference['content'] = $row['content'];
+				//$reference['staff_id'] = $row['staff_id'];
+				array_push($response['references'], $reference);
+			}
+			// close the database connection as soon as possible
+			$result->close();
+		}		
+		//return the JSON response
+		return $response;
+	}
+
+	public function getCourseStaffDetail($id)
+	{
+		$id = $this->mMysqli->real_escape_string($id);
+		
+		if($id != '') {
+			// this query needs to use the $table variable once it is functional
+           $query = "SELECT s.staff_id, s.last_name, s.first_name, sc.date 
+						FROM staff s
+							JOIN (SELECT staff_id, date
+                     			FROM staff_courses 
+                     			WHERE course_id = '$id') 
+                     			AS sc ON s.staff_id = sc.staff_id";                    						  
+		}
+		// execute the query
+		$result = $this->mMysqli->query($query);
+		
+		// build the JSON response
+		$response = array();
+		$response['references'] = array();
+		// see if there are any results
+		if($result->num_rows) {
+			// loop through all the fetched content
+			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+				$reference = array();
+				$reference['id'] = $row['staff_id'];
+				$reference['last_name'] = $row['last_name'];
+				$reference['first_name'] = $row['first_name'];
+				$reference['date'] = $row['date'];
+				array_push($response['references'], $reference);
+			}
+			// close the database connection as soon as possible
+			$result->close();
+		}		
+		//return the JSON response
+		return $response;
+	}
 }
 ?>

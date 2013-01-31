@@ -63,6 +63,7 @@ p {
 a {
 	color: #3385BC;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 a:hover {
@@ -260,7 +261,15 @@ td {
 	margin: 30px;
 	padding: 10px;
 	float: left;
-	text-align: center;
+}
+
+#main #bar {
+	background: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px;
+	color: #444444;
+	margin: 30px;
+	padding: 10px;
 }
 
 #footerT {
@@ -448,4 +457,12 @@ td {
 
 .left {
 	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+.dateline {
+	font-size: 85%;
 }
