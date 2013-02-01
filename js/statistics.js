@@ -323,8 +323,9 @@ function displayCourseDetail(data, textStatus)
 // function to display the AJAX return content on the page
 function displayCourseStaffDetail(data, textStatus)
 {
-	var i = 0;	
-	var htmlReference = "<div id='bar'>";
+	var i = 0;
+	var htmlReference = "<div>";
+	htmlReference += "<div id='bar'>";
 	htmlReference += "<h2>Attendees</h2>";
 	htmlReference += "<table id='staffT'style='width: 100%;'>";
 	htmlReference += "<thead>";
@@ -345,6 +346,7 @@ function displayCourseStaffDetail(data, textStatus)
 	});
 	htmlReference += "</tbody>";
 	htmlReference += "</table>";
+	htmlReference += "</div>";
 	htmlReference += "</div>";
 	// insert the new HTML into the document
 	$('#main')[0].innerHTML += htmlReference;

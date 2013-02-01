@@ -249,7 +249,7 @@ td {
 
 #main div {
 	background: #FFFFFF;
-	padding: 30px;
+	padding: 20px;
 	border-bottom: 1px solid #DDDDDD;
 }
 
@@ -258,7 +258,7 @@ td {
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
 	color: #444444;
-	margin: 30px;
+	margin: 20px 0 0 20px;
 	padding: 10px;
 	float: left;
 }
@@ -266,9 +266,7 @@ td {
 #main #bar {
 	background: #FFFFFF;
 	border: 1px solid #DDDDDD;
-	border-radius: 4px;
 	color: #444444;
-	margin: 30px;
 	padding: 10px;
 }
 
