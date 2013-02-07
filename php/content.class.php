@@ -62,11 +62,14 @@ class Content
 		
 		if($id != '') {
 			// this query needs to use the $table variable once it is functional
-			$query = "SELECT s.staff_id, s.last_name, s.first_name, t.tot, ds.des, dc.doc, co.coo
+			$query = "SELECT s.staff_id, s.last_name, s.first_name, fu.fun, ds.des, dc.doc, co.coo, bi.bim, na.nav, el.ele, t.tot 
 					   FROM staff s
-							JOIN (SELECT staff_id, COUNT(staff_id) AS tot
+							LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS tot
                      			FROM staff_courses
                     			GROUP BY staff_id) AS t ON s.staff_id = t.staff_id
+                    		LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS fun
+                     			FROM staff_courses WHERE course_id LIKE '%FUN%'
+                    			GROUP BY staff_id) AS fu ON s.staff_id = fu.staff_id
 							LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS des
                      			FROM staff_courses WHERE course_id LIKE '%DES%'
                     			GROUP BY staff_id) AS ds ON s.staff_id = ds.staff_id
@@ -75,7 +78,16 @@ class Content
                     			GROUP BY staff_id) AS dc ON s.staff_id = dc.staff_id
 							LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS coo
                      			FROM staff_courses WHERE course_id LIKE '%COO%'
-                    			GROUP BY staff_id) AS co ON s.staff_id = co.staff_id";					  
+                    			GROUP BY staff_id) AS co ON s.staff_id = co.staff_id
+                    		LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS bim
+                     			FROM staff_courses WHERE course_id LIKE '%BIM%'
+                    			GROUP BY staff_id) AS bi ON s.staff_id = bi.staff_id
+                    		LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS nav
+                     			FROM staff_courses WHERE course_id LIKE '%NAV%'
+                    			GROUP BY staff_id) AS na ON s.staff_id = na.staff_id
+                    		LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS ele
+                     			FROM staff_courses WHERE course_id LIKE '%ELE%'
+                    			GROUP BY staff_id) AS el ON s.staff_id = el.staff_id";					  
 		}
 		// execute the query
 		$result = $this->mMysqli->query($query);
@@ -91,10 +103,14 @@ class Content
 				$reference['staff_id'] = $row['staff_id'];
 				$reference['last_name'] = $row['last_name'];
 				$reference['first_name'] = $row['first_name'];
-				$reference['total'] = $row['tot'];
+				$reference['fun_tot'] = $row['fun'];
 				$reference['des_tot'] = $row['des'];
 				$reference['doc_tot'] = $row['doc'];
 				$reference['coo_tot'] = $row['coo'];
+				$reference['bim_tot'] = $row['bim'];
+				$reference['nav_tot'] = $row['nav'];
+				$reference['ele_tot'] = $row['ele'];
+				$reference['total'] = $row['tot'];
 				array_push($response['references'], $reference);
 			}
 			// close the database connection as soon as possible
@@ -202,6 +218,41 @@ class Content
 				$reference['id'] = $row['id'];
 				$reference['title'] = $row['title'];
 				$reference['date'] = $row['date'];
+				array_push($response['references'], $reference);
+			}
+			// close the database connection as soon as possible
+			$result->close();
+		}		
+		//return the JSON response
+		return $response;
+	}
+
+
+	public function getStaffDetail($id)
+	{
+		$id = $this->mMysqli->real_escape_string($id);
+		
+		if($id != '') {
+			// this query needs to use the $table variable once it is functional
+           $query = "SELECT *
+						FROM staff
+						WHERE staff_id = $id";	                    						  
+		}
+		// execute the query
+		$result = $this->mMysqli->query($query);
+		
+		// build the JSON response
+		$response = array();
+		$response['references'] = array();
+		// see if there are any results
+		if($result->num_rows) {
+			// loop through all the fetched content
+			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+				$reference = array();
+				$reference['id'] = $row['staff_id'];
+				$reference['last_name'] = $row['last_name'];
+				$reference['first_name'] = $row['first_name'];
+				$reference['role'] = $row['role'];
 				array_push($response['references'], $reference);
 			}
 			// close the database connection as soon as possible

@@ -142,11 +142,11 @@ function controlSidebar()
 	$('#contentT div.title li').click(function(e) {
 		if(pageTable != 'admin') {
 			getContent(e);
-		} else if (e.target.id == 'staff'){
-			getStaffSummary(e);				
-		} else if (e.target.id == 'courses'){
-			getCourseSummary(e);			
-		}	
+		} else if (e.target.id == 'dashboard'){
+			buildDashboardPage(e);
+		} else {
+			buildSummaryPage(e);
+		}
 	});
 }
 

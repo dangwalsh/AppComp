@@ -3,6 +3,42 @@
  */
 
 // aggregate and sort functions to build data tables
+function buildDashboardPage(e)
+{
+	//clear content from the main window
+	$('#main')[0].innerHTML = "";
+	// get the id number of the content that was clicked on
+	var number = e.target.id;	
+	// check for a valid id and which type content to display
+	if(number != '') {
+		// this needs to change to current activity
+		getStaffSummary(number);	
+		// this needs to change to current activity
+		getCourseSummary(number);					
+	}
+}
+
+// aggregate and sort functions to build data tables
+function buildSummaryPage(e)
+{
+	//clear content from the main window
+	$('#main')[0].innerHTML = "";
+	// get the id number of the content that was clicked on
+	var number = e.target.id;
+	//var table = t.prop('id');	
+	
+	// check for a valid id and which type content to display
+	if(number == 'staff') {
+		// breakdown of course-types the staff member has attended
+		getStaffSummary(number);	
+							
+	} else if (number == 'courses') {
+		// list of courses and attendance
+		getCourseSummary(number);				
+	}
+}
+
+// aggregate and sort functions to build data tables
 function buildDetailPage(e, t)
 {
 	//clear content from the main window
@@ -12,6 +48,8 @@ function buildDetailPage(e, t)
 	var table = t.prop('id');	
 	// check for a valid id and which type content to display
 	if(number != '' && table == 'staffT') {
+		// staff data detailed
+		getStaffDetail(number);
 		// list of courses the staff member has attended
 		getStaffCourseDetail(number);	
 		// list of projects the staff member has worked on
@@ -26,67 +64,57 @@ function buildDetailPage(e, t)
 }
 
 // AJAX function that gets the staff list
-function getStaffSummary(e)
+function getStaffSummary(number)
 {
-	// get the id number of the content that was clicked on
-	var number = e.target.id;
-	// check for a valid id
-	if(number != '') {
-		// build the JSON data field
-		var params = {
-		  	mode: 'GetStaffSummary',
-			id: number
-		};
-		// build the JSON AJAX statement
-		$.ajax({
-			url: 'php/content.php',
-			data: $.param(params),
-			type: 'POST',
-			dataType: 'json',
-			error: function(xhr, textStatus, errorThrown) {
-				displayError(textStatus);
-			},
-			success: function(data, textStatus) {
-				if (data.errno != null) {
-					displayPHPError(data);
-				} else {
-					displayStaffSummary(data);
-				}
+	// build the JSON data field
+	var params = {
+	  	mode: 'GetStaffSummary',
+		id: number
+	};
+	// build the JSON AJAX statement
+	$.ajax({
+		url: 'php/content.php',
+		data: $.param(params),
+		type: 'POST',
+		dataType: 'json',
+		error: function(xhr, textStatus, errorThrown) {
+			displayError(textStatus);
+		},
+		success: function(data, textStatus) {
+			if (data.errno != null) {
+				displayPHPError(data);
+			} else {
+				displayStaffSummary(data);
 			}
-		});		
-	}
+		}
+	});		
 }
 
 // AJAX function that gets the course list
-function getCourseSummary(e)
+function getCourseSummary(number)
 {
-	// get the id number of the content that was clicked on
-	var number = e.target.id;
-	// check for a valid id
-	if(number != '') {
-		// build the JSON data field
-		var params = {
-		  	mode: 'GetCourseSummary',
-			id: number
-		};
-		// build the JSON AJAX statement
-		$.ajax({
-			url: 'php/content.php',
-			data: $.param(params),
-			type: 'POST',
-			dataType: 'json',
-			error: function(xhr, textStatus, errorThrown) {
-				displayError(textStatus);
-			},
-			success: function(data, textStatus) {
-				if (data.errno != null) {
-					displayPHPError(data);
-				} else {
-					displayCourseSummary(data);
-				}
+	// build the JSON data field
+	var params = {
+	  	mode: 'GetCourseSummary',
+		id: number
+	};
+	// build the JSON AJAX statement
+	$.ajax({
+		url: 'php/content.php',
+		data: $.param(params),
+		type: 'POST',
+		dataType: 'json',
+		error: function(xhr, textStatus, errorThrown) {
+			displayError(textStatus);
+		},
+		success: function(data, textStatus) {
+			if (data.errno != null) {
+				displayPHPError(data);
+			} else {
+				displayCourseSummary(data);
 			}
-		});		
-	}
+		}
+	});		
 }
 
 // AJAX function that gets the course list of the staff member
@@ -142,6 +170,35 @@ function getStaffProjectDetail(number)
 		}
 	});	
 }
+
+// AJAX function that gets the course information
+function getStaffDetail(number)
+{
+	alert(number);
+	// build the JSON data field
+	var params = {
+	  	mode: 'GetStaffDetail',
+		id: number
+	};
+	// build the JSON AJAX statement
+	$.ajax({
+		url: 'php/content.php',
+		data: $.param(params),
+		type: 'POST',
+		dataType: 'json',
+		error: function(xhr, textStatus, errorThrown) {
+			displayError(textStatus);
+		},
+		success: function(data, textStatus) {
+			if (data.errno != null) {
+				displayPHPError(data);
+			} else {
+				displayStaffDetail(data);
+			}
+		}
+	});		
+}
+
 
 // AJAX function that gets the course information
 function getCourseDetail(number)
@@ -205,7 +262,7 @@ function displayStaffSummary(data, textStatus)
 	htmlReference += "<h2>Staff Summary</h2>";
 	htmlReference += "<table id='staffT'>";
 	htmlReference += "<thead>";
-	htmlReference += "<tr><th>Name</th><th>Design</th><th>Documentation</th><th>Coordination</th><th>Total</th></tr>";
+	htmlReference += "<tr><th>Name</th><th>Fundamentals</th><th>Design</th><th>Documentation</th><th>Coordination</th><th>BIM Coord</th><th>Navisworks</th><th>Elective</th><th>Total</th></tr>";
 	htmlReference += "</thead><tbody>";
 	// loop through results	
 	$.each(data.references, function(i, reference) {
@@ -216,11 +273,16 @@ function displayStaffSummary(data, textStatus)
 			var even = "";
 		}
 		// replace null values with tick marks
+		if (reference.fun_tot == null) reference.fun_tot = "-";
 		if (reference.des_tot == null) reference.des_tot = "-";
 		if (reference.doc_tot == null) reference.doc_tot = "-";
 		if (reference.coo_tot == null) reference.coo_tot = "-";
+		if (reference.bim_tot == null) reference.bim_tot = "-";
+		if (reference.nav_tot == null) reference.nav_tot = "-";
+		if (reference.ele_tot == null) reference.ele_tot = "-";
+		if (reference.total == null) reference.total = "-";
 		// compose HTML code that displays the content
-		htmlReference += "<tr" + even + "><td><a id='" + reference.staff_id + "'>" + reference.last_name + ", " + reference.first_name + "</a></td><td class='center'>" + reference.des_tot + "</td><td class='center'>" + reference.doc_tot + "</td><td class='center'>" + reference.coo_tot + "</td><td class='center'>" + reference.total + "</td></tr>";				
+		htmlReference += "<tr" + even + "><td><a id='" + reference.staff_id + "'>" + reference.last_name + ", " + reference.first_name + "</a></td><td class='center'>" + reference.fun_tot + "</td><td class='center'>" + reference.des_tot + "</td><td class='center'>" + reference.doc_tot + "</td><td class='center'>" + reference.coo_tot + "</td><td class='center'>" + reference.bim_tot + "</td><td class='center'>" + reference.nav_tot + "</td><td class='center'>" + reference.ele_tot + "</td><td class='center'>" + reference.total + "</td></tr>";				
 		// increment counter
 		++i;
 	});
@@ -228,7 +290,7 @@ function displayStaffSummary(data, textStatus)
 	htmlReference += "</table>";
 	htmlReference += "</div>";
 	// insert the new HTML into the document
-	$('#main')[0].innerHTML = htmlReference;
+	$('#main')[0].innerHTML += htmlReference;
 }
 
 // function to display the AJAX return content on the page
@@ -260,14 +322,15 @@ function displayCourseSummary(data, textStatus)
 	htmlReference += "</table>";
 	htmlReference += "</div>";
 	// insert the new HTML into the document
-	$('#main')[0].innerHTML = htmlReference;
+	$('#main')[0].innerHTML += htmlReference;
 }
 
 // function to display the AJAX return content on the page
 function displayStaffCourseDetail(data, textStatus)
 {
 	var i = 0;	
-	var htmlReference = "<div id='module'>";
+	var htmlReference = "<div>";
+	htmlReference += "<div id='bar'>";
 	htmlReference += "<h2>Courses</h2>";
 	htmlReference += "<table id='courseT'>";
 	htmlReference += "<thead>";
@@ -289,6 +352,7 @@ function displayStaffCourseDetail(data, textStatus)
 	htmlReference += "</tbody>";
 	htmlReference += "</table>";
 	htmlReference += "</div>";
+	htmlReference += "</div>";
 	// insert the new HTML into the document
 	$('#main')[0].innerHTML += htmlReference;
 }
@@ -297,7 +361,8 @@ function displayStaffCourseDetail(data, textStatus)
 function displayStaffProjectDetail(data, textStatus)
 {
 	var i = 0;	
-	var htmlReference = "<div id='module'>";
+	var htmlReference = "<div>";
+	htmlReference += "<div id='bar'>";
 	htmlReference += "<h2>Projects</h2>";
 	htmlReference += "<table id='courseT'>";
 	htmlReference += "<thead>";
@@ -321,6 +386,21 @@ function displayStaffProjectDetail(data, textStatus)
 	htmlReference += "</tbody>";
 	htmlReference += "</table>";
 	htmlReference += "</div>";
+	htmlReference += "</div>";
+	// insert the new HTML into the document
+	$('#main')[0].innerHTML += htmlReference;
+}
+
+// function to display the AJAX return content on the page
+function displayStaffDetail(data, textStatus)
+{
+	var i = 0;
+	var htmlReference = "<div>";
+	$.each(data.references, function(i, reference) {
+		htmlReference += "<h1>" + reference.first_name + " " + reference.last_name + "</h1>";
+		htmlReference += "<h3>" + reference.role + "</h3>";			
+	});
+	htmlReference += "</div>";	
 	// insert the new HTML into the document
 	$('#main')[0].innerHTML += htmlReference;
 }
@@ -348,7 +428,7 @@ function displayCourseStaffDetail(data, textStatus)
 	var htmlReference = "<div>";
 	htmlReference += "<div id='bar'>";
 	htmlReference += "<h2>Attendees</h2>";
-	htmlReference += "<table id='staffT'style='width: 100%;'>";
+	htmlReference += "<table id='staffT' style='width: 100%;'>";
 	htmlReference += "<thead>";
 	htmlReference += "<tr><th>Name</th><th>Date</th></tr>";
 	htmlReference += "</thead><tbody>";

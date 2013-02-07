@@ -4,15 +4,13 @@
 	preserveAspectRatio="none" width="100%" height="100%">
 	
 	<defs>
-		<linearGradient id="grad_nopage"
+		<linearGradient id="grad_courses"
 						x1="0%" y1="0%"
 						x2="0%" y2="100%"
 						spreadMethod="pad">
-			<stop offset="0%" stop-color="#AAAAAA" stop-opacity="1" />
-			<stop offset="4%" stop-color="#777777" stop-opacity="1" />
-			<stop offset="96%" stop-color="#444444" stop-opacity="1" />
-			<stop offset="100%" stop-color="#222222" stop-opacity="1" />
+			<stop offset="0%" stop-color="#444444" stop-opacity="1" />
+			<stop offset="100%" stop-color="#777777" stop-opacity="1" />
 		</linearGradient>
 	</defs>	
-	<rect width="100%" height="100%" style="fill:url(#grad_nopage);" />
+	<rect width="100%" height="100%" style="fill:url(#grad_courses);" />
 </svg>

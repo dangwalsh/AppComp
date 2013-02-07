@@ -147,6 +147,13 @@ function setNavColor()
 		atable.addClass('courses_table');
 		atd.addClass('courses_td');
 		$('#courses').addClass('courses_sel');
+	} else if (pageTable == 'admin') {
+		nbar.addClass('nopage');
+		ntable.addClass('nopage_table');
+		ntd.addClass('nopage_td');
+		atable.addClass('nopage_table');
+		atd.addClass('nopage_td');
+		$('#admin').addClass('admin_sel');
 	} else {
 		nbar.addClass('nopage');
 		ntable.addClass('nopage_table');

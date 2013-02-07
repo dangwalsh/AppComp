@@ -27,7 +27,7 @@ header h1 {
 nav {
 	color: #FFFFFF;
 	box-shadow: 0 2px 3px #999999;
-	z-index: 3;
+	height:36px;
 }
 
 nav td {
@@ -242,11 +242,11 @@ td {
 #main th {
 	border-bottom: 1px solid;
 	text-align: left;
-	padding: 5px 50px 5px 5px;
+	padding: 5px 10px 5px 5px;
 }
 
 #main td {
-	padding: 5px 50px 5px 5px;
+	padding: 5px 10px 5px 5px;
 }
 
 #main div {
@@ -255,7 +255,7 @@ td {
 	border-bottom: 1px solid #DDDDDD;
 }
 
-#main #module {
+#module {
 	background: #FFFFFF;
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
@@ -265,11 +265,19 @@ td {
 	float: left;
 }
 
-#main #bar {
+#module tr:hover {
+	background: #FCFCDD;
+}
+
+#bar {
 	background: #FFFFFF;
 	border: 1px solid #DDDDDD;
 	color: #444444;
 	padding: 10px;
+}
+
+#bar table {
+	width: 100%;	
 }
 
 #footerT {
@@ -417,16 +425,28 @@ td {
 .articles_sel {
 	background-image: url('../svg/grad_articles_sel.svg');
 	border-bottom: 1px solid #4D5B76;
+	border-left: 1px solid #4D5B76;
+	border-right: 1px solid #4D5B76;
 }
 
 .videos_sel {
 	background-image: url('../svg/grad_videos_sel.svg');
 	border-bottom: 1px solid #764D5B;
+	border-left: 1px solid #764D5B;
+	border-right: 1px solid #764D5B;
 }
 
 .courses_sel {
 	background-image: url('../svg/grad_courses_sel.svg');
 	border-bottom: 1px solid #4D765B;
+	border-left: 1px solid #4D765B;
+	border-right: 1px solid #4D765B;
+}
+.admin_sel {
+	background-image: url('../svg/grad_admin_sel.svg');
+	border-bottom: 1px solid #444444;
+	border-left: 1px solid #444444;
+	border-right: 1px solid #444444;
 }
 
 .inactive {
@@ -466,3 +486,5 @@ td {
 .dateline {
 	font-size: 85%;
 }
+
+.

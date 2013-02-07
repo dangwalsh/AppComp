@@ -66,6 +66,15 @@ if($mode == 'GetContent') {
 		//retrieve the content from the server
 		echo json_encode($content->getCourseDetail($id));
 	}
+} else if ($mode == 'GetStaffDetail') {
+	// retrieve the action parameters from client request
+	$id = $_POST['id'];
+	
+	if($id != '') {
+		sendHeaders();
+		//retrieve the content from the server
+		echo json_encode($content->getStaffDetail($id));
+	}
 } else if ($mode == 'GetCourseStaffDetail') {
 	// retrieve the action parameters from client request
 	$id = $_POST['id'];
