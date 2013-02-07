@@ -27,7 +27,9 @@ header h1 {
 nav {
 	color: #FFFFFF;
 	box-shadow: 0 2px 3px #999999;
+	z-index: 3;
 }
+
 nav td {
 	padding: 10px 20px 10px 20px;
 	cursor: pointer;
@@ -113,7 +115,7 @@ td {
 }
 
 #log h1 {
-	text-shadow: #555555 -1px -1px;
+	text-shadow: #222222 -1px -1px;
 	margin: 10px;
 }
 
@@ -222,7 +224,7 @@ td {
 	font-size: 10px;
 	width: 100%;
 	height: 24px;
-	background: #FFFFFF;
+	background: none;
 }
 
 #main {
@@ -341,12 +343,12 @@ td {
 
 .articles_table {
 	border-right: 1px solid #7C8AA5;
-	box-shadow: -1px 0 0 #4C5A75; 	
+	box-shadow: 1px 0 0 #4C5A75; 	
 }
 
 .articles_td {
 	border-left: 1px solid #7C8AA5;
-	box-shadow: 1px 0 0 #4C5A75;
+	box-shadow: -1px 0 0 #4C5A75;
 }
 
 .articles_td:hover {
@@ -359,12 +361,12 @@ td {
 
 .videos_table {
 	border-right: 1px solid #A57C8A;
-	box-shadow: -1px 0 0 #764D5B;
+	box-shadow: 1px 0 0 #764D5B;
 }
 
 .videos_td {
 	border-left: 1px solid #A57C8A;
-	box-shadow: 1px 0 0 #764D5B;
+	box-shadow: -1px 0 0 #764D5B;
 }
 
 .videos_td:hover {
@@ -377,12 +379,12 @@ td {
 
 .courses_table {
 	border-right: 1px solid #7CA58A;
-	box-shadow: -1px 0 0 #4D765B;
+	box-shadow: 1px 0 0 #4D765B;
 }
 
 .courses_td {
 	border-left: 1px solid #7CA58A;
-	box-shadow: 1px 0 0 #4D765B;
+	box-shadow: -1px 0 0 #4D765B;
 }
 
 .courses_td:hover {
@@ -395,12 +397,12 @@ td {
 
 .nopage_table {
 	border-right: 1px solid #777777;
-	box-shadow: -1px 0 0 #444444;
+	box-shadow: 1px 0 0 #444444;
 }
 
 .nopage_td {
 	border-left: 1px solid #777777;
-	box-shadow: 1px 0 0 #444444;	
+	box-shadow: -1px 0 0 #444444;	
 }
 
 .nopage_td:hover {

@@ -2,6 +2,29 @@
  * @author dwalsh
  */
 
+// aggregate and sort functions to build data tables
+function buildDetailPage(e, t)
+{
+	//clear content from the main window
+	$('#main')[0].innerHTML = "";
+	// get the id number of the content that was clicked on
+	var number = e.target.id;
+	var table = t.prop('id');	
+	// check for a valid id and which type content to display
+	if(number != '' && table == 'staffT') {
+		// list of courses the staff member has attended
+		getStaffCourseDetail(number);	
+		// list of projects the staff member has worked on
+		getStaffProjectDetail(number);	
+					
+	} else if (number != '' && table == 'courseT') {
+		// course data detailed
+		getCourseDetail(number);	
+		// list of staff members that have attended course
+		getCourseStaffDetail(number);				
+	}
+}
+
 // AJAX function that gets the staff list
 function getStaffSummary(e)
 {
@@ -12,7 +35,7 @@ function getStaffSummary(e)
 		// build the JSON data field
 		var params = {
 		  	mode: 'GetStaffSummary',
-			id: number,
+			id: number
 		};
 		// build the JSON AJAX statement
 		$.ajax({
@@ -32,6 +55,146 @@ function getStaffSummary(e)
 			}
 		});		
 	}
+}
+
+// AJAX function that gets the course list
+function getCourseSummary(e)
+{
+	// get the id number of the content that was clicked on
+	var number = e.target.id;
+	// check for a valid id
+	if(number != '') {
+		// build the JSON data field
+		var params = {
+		  	mode: 'GetCourseSummary',
+			id: number
+		};
+		// build the JSON AJAX statement
+		$.ajax({
+			url: 'php/content.php',
+			data: $.param(params),
+			type: 'POST',
+			dataType: 'json',
+			error: function(xhr, textStatus, errorThrown) {
+				displayError(textStatus);
+			},
+			success: function(data, textStatus) {
+				if (data.errno != null) {
+					displayPHPError(data);
+				} else {
+					displayCourseSummary(data);
+				}
+			}
+		});		
+	}
+}
+
+// AJAX function that gets the course list of the staff member
+function getStaffCourseDetail(number)
+{
+	// build the JSON data field
+	var params = {
+	  	mode: 'GetStaffCourseDetail',
+		id: number
+	};
+	// build the JSON AJAX statement
+	$.ajax({
+		url: 'php/content.php',
+		data: $.param(params),
+		type: 'POST',
+		dataType: 'json',
+		error: function(xhr, textStatus, errorThrown) {
+			displayError(textStatus);
+		},
+		success: function(data, textStatus) {
+			if (data.errno != null) {
+				displayPHPError(data);
+			} else {
+				displayStaffCourseDetail(data);
+			}
+		}
+	});	
+}
+
+// AJAX function that gets the project list of the staff member
+function getStaffProjectDetail(number)
+{
+	// build the JSON data field
+	var params = {
+	  	mode: 'GetStaffProjectDetail',
+		id: number
+	};
+	// build the JSON AJAX statement
+	$.ajax({
+		url: 'php/content.php',
+		data: $.param(params),
+		type: 'POST',
+		dataType: 'json',
+		error: function(xhr, textStatus, errorThrown) {
+			displayError(textStatus);
+		},
+		success: function(data, textStatus) {
+			if (data.errno != null) {
+				displayPHPError(data);
+			} else {
+				displayStaffProjectDetail(data);
+			}
+		}
+	});	
+}
+
+// AJAX function that gets the course information
+function getCourseDetail(number)
+{
+	// build the JSON data field
+	var params = {
+	  	mode: 'GetCourseDetail',
+		id: number
+	};
+	// build the JSON AJAX statement
+	$.ajax({
+		url: 'php/content.php',
+		data: $.param(params),
+		type: 'POST',
+		dataType: 'json',
+		error: function(xhr, textStatus, errorThrown) {
+			displayError(textStatus);
+		},
+		success: function(data, textStatus) {
+			if (data.errno != null) {
+				displayPHPError(data);
+			} else {
+				displayCourseDetail(data);
+			}
+		}
+	});		
+}
+
+// AJAX function that gets the course attendance list
+function getCourseStaffDetail(number)
+{
+	// build the JSON data field
+	var params = {
+	  	mode: 'GetCourseStaffDetail',
+		id: number
+	};
+	// build the JSON AJAX statement
+	$.ajax({
+		url: 'php/content.php',
+		data: $.param(params),
+		type: 'POST',
+		dataType: 'json',
+		error: function(xhr, textStatus, errorThrown) {
+			displayError(textStatus);
+		},
+		success: function(data, textStatus) {
+			if (data.errno != null) {
+				displayPHPError(data);
+			} else {
+				displayCourseStaffDetail(data);
+			}
+		}
+	});		
 }
 
 // function to display the AJAX return content on the page
@@ -68,38 +231,6 @@ function displayStaffSummary(data, textStatus)
 	$('#main')[0].innerHTML = htmlReference;
 }
 
-// AJAX function that gets the course list
-function getCourseSummary(e)
-{
-	// get the id number of the content that was clicked on
-	var number = e.target.id;
-	// check for a valid id
-	if(number != '') {
-		// build the JSON data field
-		var params = {
-		  	mode: 'GetCourseSummary',
-			id: number
-		};
-		// build the JSON AJAX statement
-		$.ajax({
-			url: 'php/content.php',
-			data: $.param(params),
-			type: 'POST',
-			dataType: 'json',
-			error: function(xhr, textStatus, errorThrown) {
-				displayError(textStatus);
-			},
-			success: function(data, textStatus) {
-				if (data.errno != null) {
-					displayPHPError(data);
-				} else {
-					displayCourseSummary(data);
-				}
-			}
-		});		
-	}
-}
-
 // function to display the AJAX return content on the page
 function displayCourseSummary(data, textStatus)
 {
@@ -130,116 +261,6 @@ function displayCourseSummary(data, textStatus)
 	htmlReference += "</div>";
 	// insert the new HTML into the document
 	$('#main')[0].innerHTML = htmlReference;
-}
-
-function getDetail(e, t)
-{
-	$('#main')[0].innerHTML = "";
-	// get the id number of the content that was clicked on
-	var number = e.target.id;
-	var table = t.prop('id');
-	
-	// check for a valid id
-	if(number != '' && table == 'staffT') {
-		
-		/////////////  STAFF DETAIL /////////////////
-		// build the JSON data field
-		var params = {
-		  	mode: 'GetStaffCourseDetail',
-			id: number
-		};
-		// build the JSON AJAX statement
-		$.ajax({
-			url: 'php/content.php',
-			data: $.param(params),
-			type: 'POST',
-			dataType: 'json',
-			error: function(xhr, textStatus, errorThrown) {
-				displayError(textStatus);
-			},
-			success: function(data, textStatus) {
-				if (data.errno != null) {
-					displayPHPError(data);
-				} else {
-					displayStaffCourseDetail(data);
-				}
-			}
-		});	
-
-		// build the JSON data field
-		var params = {
-		  	mode: 'GetStaffProjectDetail',
-			id: number
-		};
-		// build the JSON AJAX statement
-		$.ajax({
-			url: 'php/content.php',
-			data: $.param(params),
-			type: 'POST',
-			dataType: 'json',
-			error: function(xhr, textStatus, errorThrown) {
-				displayError(textStatus);
-			},
-			success: function(data, textStatus) {
-				if (data.errno != null) {
-					displayPHPError(data);
-				} else {
-					displayStaffProjectDetail(data);
-				}
-			}
-		});	
-					
-	} else if (number != '' && table == 'courseT') {
-
-		/////////////  COURSE DETAIL /////////////////
-		// build the JSON data field
-		var params = {
-		  	mode: 'GetCourseDetail',
-			id: number
-		};
-		// build the JSON AJAX statement
-		$.ajax({
-			url: 'php/content.php',
-			data: $.param(params),
-			type: 'POST',
-			dataType: 'json',
-			error: function(xhr, textStatus, errorThrown) {
-				displayError(textStatus);
-			},
-			success: function(data, textStatus) {
-				if (data.errno != null) {
-					displayPHPError(data);
-				} else {
-					displayCourseDetail(data);
-				}
-			}
-		});	
-		
-		// build the JSON data field
-		var params = {
-		  	mode: 'GetCourseStaffDetail',
-			id: number
-		};
-		// build the JSON AJAX statement
-		$.ajax({
-			url: 'php/content.php',
-			data: $.param(params),
-			type: 'POST',
-			dataType: 'json',
-			error: function(xhr, textStatus, errorThrown) {
-				displayError(textStatus);
-			},
-			success: function(data, textStatus) {
-				if (data.errno != null) {
-					displayPHPError(data);
-				} else {
-					displayCourseStaffDetail(data);
-				}
-			}
-		});		
-		
-			
-	}
 }
 
 // function to display the AJAX return content on the page
@@ -351,3 +372,4 @@ function displayCourseStaffDetail(data, textStatus)
 	// insert the new HTML into the document
 	$('#main')[0].innerHTML += htmlReference;
 }
+

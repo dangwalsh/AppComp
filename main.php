@@ -16,14 +16,13 @@ if (isset($_SESSION['user'])) {
 echo <<<EOT
 
 <!DOCTYPE html>
-<html lang="en" class="js">
+<html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Applied Computing</title>
 	<meta name="description" content="" />
 	<meta name="author" content="dwalsh" />
-	<meta name="viewport" content="width=device-width; initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="js/error_handler.js"></script>
@@ -33,7 +32,7 @@ echo <<<EOT
 	<script type="text/javascript" src="js/statistics.js"></script>
 </head>
 
-	<body>
+	<body onload="MM_preloadImages('images/appcomp.png','images/search.png','images/disclosure.png','images/disclosure_down.png','svg/grad_articles.svg','svg/grad_articles_sel.svg','svg/grad_courses.svg','svg/grad_courses_sel.svg','svg/grad_videos.svg','svg/grad_videos_sel.svg','svg/grad_nopage.svg')">
 		<div>
 			<header>			
 				<table id="accountT">

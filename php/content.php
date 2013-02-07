@@ -1,6 +1,8 @@
 <?php
 // reference the file containing the content class
 require_once('content.class.php');
+// reference the file containing header function
+//require_once('headers.php');
 // retrieve the operation to be performed
 $mode = $_POST['mode'];
 
@@ -86,5 +88,4 @@ function sendHeaders()
 	header('Pragma: no-cache');
 	header('Content-Type: application/json');
 }
-
 ?>

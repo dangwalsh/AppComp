@@ -2,6 +2,22 @@
  * @author dwalsh
  */
 
+//preload assets to be used on this page
+function MM_preloadImages()
+{
+	var d = document;
+	if (d.images) {
+		if (!d.MM_p) d.MM_p = new Array();
+		var i, j = d.MM_p.length, a = MM_preloadImages.arguments;
+		for (i = 0; i < a.length; i++) {
+			if (a[i].indexOf("#") != 0) {
+				d.MM_p[j] = new Image;
+				d.MM_p[j++].src = a[i];
+			}
+		}
+	}
+}
+
 // perform fadein and set sidebar height
 $(window).load( function () {
 	$('html').fadeIn().removeClass('js');
@@ -32,48 +48,44 @@ $(window).scroll( function () {
 
 // event handlers for page browsing
 $(document).ready( function() {	
-	
-	///////////// LOGIN PAGE ////////////////
-	
-	// erase errors when user starts typing
-	$('#name').click(function() {
-		$('#response')[0].innerHTML = "";
-		$('#name').removeClass('missing');
-	});
-	
-	$('#pass').click(function() {
-		$('#response')[0].innerHTML = "";
-		$('#pass').removeClass('missing');
-	});
-	
-	// allow user to log back in
-	$('#reset').click(function() {
-		window.location = "index.php";
-	});
-	
-	// verify username and password and create 
-	//user object or display error
-	$('#submit').click(function() {
+	if ($('#log')) {
+		// erase errors when user starts typing
+		$('#name').click(function() {
+			$('#response')[0].innerHTML = "";
+			$('#name').removeClass('missing');
+		});
 		
-		$('#name').removeClass('missing');
-		$('#pass').removeClass('missing');
-		var name = $('#name').val();
-		var pass = $('#pass').val();
+		$('#pass').click(function() {
+			$('#response')[0].innerHTML = "";
+			$('#pass').removeClass('missing');
+		});
 		
-		if (name == "") {
-			$('#name').addClass('missing');
-		}
-		if (pass == "") {
-			$('#pass').addClass('missing');
-		}
+		// allow user to log back in
+		$('#reset').click(function() {
+			window.location = "index.php";
+		});
 		
-		getUser(name, pass);
-	});
-	
-	///////////// MAIN PAGE ////////////////
-	
-	// change the color of the navigation bar to match 
-	// the page--before getting new content from DB
+		// verify username and password and create 
+		//user object or display error
+		$('#submit').click(function() {
+			
+			$('#name').removeClass('missing');
+			$('#pass').removeClass('missing');
+			var name = $('#name').val();
+			var pass = $('#pass').val();
+			
+			if (name == "") {
+				$('#name').addClass('missing');
+			}
+			if (pass == "") {
+				$('#pass').addClass('missing');
+			}
+			
+			getUser(name, pass);
+		});
+	} 
+	// change the color of the nav bar to match the page
+	// before getting new content from DB!!!
 	setNavColor();
 	
 	// show the table of the page that is clicked	
@@ -91,6 +103,7 @@ $(document).ready( function() {
 	// must be appended
 	controlSidebar();
 	controlTable();	
+
 });
 
 // control the display of the content browser
@@ -130,9 +143,9 @@ function controlSidebar()
 		if(pageTable != 'admin') {
 			getContent(e);
 		} else if (e.target.id == 'staff'){
-			getStaffSummary(e);	
+			getStaffSummary(e);				
 		} else if (e.target.id == 'courses'){
-			getCourseSummary(e);	
+			getCourseSummary(e);			
 		}	
 	});
 }
@@ -141,6 +154,6 @@ function controlTable()
 {
 	$('#main').on('click', 'table tr td:first-child', function(e) {
 		var t = $(this).parent().parent().parent();  		
-   		getDetail(e, t);
+   		buildDetailPage(e, t);
 	});	
 }

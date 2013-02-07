@@ -236,7 +236,6 @@ class Content
 				$reference['title'] = $row['title'];
 				$reference['date'] = $row['date_created'];
 				$reference['content'] = $row['content'];
-				//$reference['staff_id'] = $row['staff_id'];
 				array_push($response['references'], $reference);
 			}
 			// close the database connection as soon as possible

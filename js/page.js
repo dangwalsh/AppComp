@@ -123,6 +123,7 @@ function setNavColor()
 	nbar.removeClass();
 	ntable.removeClass();
 	ntd.removeClass();
+	atable.removeClass();
 	atd.removeClass();
 	
 	if(pageTable == 'posts') {
