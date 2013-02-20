@@ -30,6 +30,7 @@ echo <<<EOT
 	<script type="text/javascript" src="js/page.js"></script>
 	<script type="text/javascript" src="js/content.js"></script>
 	<script type="text/javascript" src="js/statistics.js"></script>
+	<script type="text/javascript" src="js/graph.js"></script>
 </head>
 
 	<body onload="MM_preloadImages('images/appcomp.png','images/search.png','images/disclosure.png','images/disclosure_down.png','svg/grad_articles.svg','svg/grad_articles_sel.svg','svg/grad_courses.svg','svg/grad_courses_sel.svg','svg/grad_videos.svg','svg/grad_videos_sel.svg','svg/grad_nopage.svg')">

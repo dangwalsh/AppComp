@@ -50,6 +50,8 @@ function buildDetailPage(e, t)
 	if(number != '' && table == 'staffT') {
 		// staff data detailed
 		getStaffDetail(number);
+		// chart the staff members progress
+		getCategoriesGraph(number);
 		// list of courses the staff member has attended
 		getStaffCourseDetail(number);	
 		// list of projects the staff member has worked on
@@ -174,7 +176,6 @@ function getStaffProjectDetail(number)
 // AJAX function that gets the course information
 function getStaffDetail(number)
 {
-	alert(number);
 	// build the JSON data field
 	var params = {
 	  	mode: 'GetStaffDetail',

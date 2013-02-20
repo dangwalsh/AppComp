@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	preserveAspectRatio="none" width="100%" height="100%">
+	 <defs id="defs">
+		<clipPath id="_ABSTRACT_RENDERER_ID_0">
+	   		<rect height="160" width="100%" y="0" x="0"></rect>
+	  	</clipPath>
+	</defs>
+	<rect fill="#ffffff" stroke-width="1" stroke="none" height="160" width="1113" y="0" x="0"></rect>
+	<g clip-path="url(#_ABSTRACT_RENDERER_ID_0)">
+		<g>
+	    	<rect fill="#ffffff" stroke-width="0" stroke="none" height="136" width="1" y="4" x="37"></rect>
+			<rect fill="#ffffff" stroke-width="0" stroke="none" height="136" width="1" y="4" x="297"></rect>
+			<rect fill="#ffffff" stroke-width="0" stroke="none" height="136" width="1" y="4" x="556"></rect>
+			<rect fill="#ffffff" stroke-width="0" stroke="none" height="136" width="1" y="4" x="815"></rect>
+			<rect fill="#efefef" stroke-width="0" stroke="none" height="1" width="1113" y="139" x="0"></rect>
+			<rect fill="#efefef" stroke-width="0" stroke="none" height="1" width="1113" y="72" x="0"></rect>
+			<rect fill="#efefef" stroke-width="0" stroke="none" height="1" width="1113" y="4" x="0"></rect>
+		</g>
+		<g>
+			<g>
+				<path fill="#058dc7" fill-opacity="0.1" stroke-width="0" stroke="none" d="M0.5,139.5L0.5,92.25L37.57,136.13L74.63,119.25L111.7,122.63L148.77,126L185.83,139.5L222.9,136.13L259.97,126L297.03,115.88L334.1,132.75L371.17,109.13L408.23,129.38L445.3,139.5L482.37,136.13L519.43,139.5L556.5,139.5L593.57,129.38L630.63,129.38L667.7,112.5L704.77,31.5L741.83,126L778.9,105.75L815.97,115.88L853.03,126L890.1,126L927.17,115.88L964.23,122.63L1001.3,136.13L1038.37,119.25L1075.43,122.63L1112.5,119.25L1112.5,139.5Z"></path>
+			</g>
+		</g>
+		<g>
+	    	<rect fill="#333333" stroke-width="0" stroke="none" height="1" width="1113" y="139" x="0"></rect>
+		</g>
+		<g>
+		    <path fill="none" fill-opacity="1" stroke-width="4" stroke="#058dc7" d="M0.5,92.25L37.57,136.13L74.63,119.25L111.7,122.63L148.77,126L185.83,139.5L222.9,136.13L259.97,126L297.03,115.88L334.1,132.75L371.17,109.13L408.23,129.38L445.3,139.5L482.37,136.13L519.43,139.5L556.5,139.5L593.57,129.38L630.63,129.38L667.7,112.5L704.77,31.5L741.83,126L778.9,105.75L815.97,115.88L853.03,126L890.1,126L927.17,115.88L964.23,122.63L1001.3,136.13L1038.37,119.25L1075.43,122.63L1112.5,119.25"></path>
+		</g>
+	</g>
+	<g>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="92.25" cx="0.5"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="136.125" cx="37.56666666666667"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="119.25" cx="74.63333333333334"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="122.625" cx="111.7"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="126" cx="148.76666666666668"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="139.5" cx="185.83333333333334"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="136.125" cx="222.9"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="126" cx="259.9666666666667"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="115.875" cx="297.03333333333336"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="132.75" cx="334.1"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="109.125" cx="371.1666666666667"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="129.375" cx="408.23333333333335"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="139.5" cx="445.3"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="136.125" cx="482.3666666666667"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="139.5" cx="519.4333333333334"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="139.5" cx="556.5"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="129.375" cx="593.5666666666667"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="129.375" cx="630.6333333333333"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="112.5" cx="667.7"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="31.5" cx="704.7666666666667"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="126" cx="741.8333333333334"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="105.75" cx="778.9"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="115.875" cx="815.9666666666667"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="126" cx="853.0333333333333"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="126" cx="890.1"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="115.875" cx="927.1666666666666"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="122.625" cx="964.2333333333333"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="136.125" cx="1001.3000000000001"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="119.25" cx="1038.3666666666668"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="122.625" cx="1075.4333333333334"></circle>
+	   <circle fill="#058dc7" stroke-width="0" stroke="none" r="4.5" cy="119.25" cx="1112.5"></circle>
+	</g>
+	<g>
+	   <g>
+	    <text fill="#444444" stroke-width="0" stroke="none" font-size="11" font-family="Arial" y="153.85" x="37.56666666666667" text-anchor="middle">Jan 8</text>
+	   </g>
+	   <g>
+	    <text fill="#444444" stroke-width="0" stroke="none" font-size="11" font-family="Arial" y="153.85" x="297.03333333333336" text-anchor="middle">Jan 15</text>
+	   </g>
+	   <g>
+	    <text fill="#444444" stroke-width="0" stroke="none" font-size="11" font-family="Arial" y="153.85" x="556.5" text-anchor="middle">Jan 22</text>
+	   </g>
+	   <g>
+	    <text fill="#444444" stroke-width="0" stroke="none" font-size="11" font-family="Arial" y="153.85" x="815.9666666666667" text-anchor="middle">Jan 29</text>
+	   </g>
+	   <g>
+	    <g>
+		 <text fill="#444444" stroke-width="3" stroke="#ffffff" font-size="11" font-family="Arial" y="84.35" x="3" text-anchor="start">20</text>
+		 <text fill="#444444" stroke-width="0" stroke="none" font-size="11" font-family="Arial" y="84.35" x="3" text-anchor="start">20</text>
+		</g>
+	   </g>
+	   <g>
+	    <g>
+		 <text fill="#444444" stroke-width="3" stroke="#ffffff" font-size="11" font-family="Arial" y="16.85" x="3" text-anchor="start">40</text>
+		 <text fill="#444444" stroke-width="0" stroke="none" font-size="11" font-family="Arial" y="16.85" x="3" text-anchor="start">40</text>
+		</g>
+	   </g>
+	  </g>
+	 </g>
+	 <g></g>
+</svg>
