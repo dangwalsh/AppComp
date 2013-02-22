@@ -332,5 +332,6 @@ class Content
 		//return the JSON response
 		return $response;
 	}
+
 }
 ?>

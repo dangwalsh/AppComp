@@ -31,8 +31,6 @@ function getCategoriesGraph(number)
 // function to display the AJAX return content on the page
 function displayCategoriesGraph(data, textStatus)
 {
-	var i = 0;
-	//alert(data);
 	var htmlReference = data;
 	// insert the new HTML into the document
 	$('#main')[0].innerHTML += htmlReference;

@@ -102,8 +102,8 @@ $(document).ready( function() {
 	// once a new table is populated the event handlers 
 	// must be appended
 	controlSidebar();
-	controlTable();	
-
+	controlTable();
+	controlGraph();
 });
 
 // control the display of the content browser
@@ -152,8 +152,17 @@ function controlSidebar()
 
 function controlTable() 
 {
-	$('#main').on('click', 'table tr td:first-child', function(e) {
+	$('#main').on('click', 'table tbody tr td:first-child', function(e) {
 		var t = $(this).parent().parent().parent();  		
    		buildDetailPage(e, t);
 	});	
+}
+
+function controlGraph()
+{
+	$('#main').on('mouseover', 'svg #plot rect', function(e) {
+		$(this).attr('fill', '#159DD7');
+	}).on('mouseout', 'svg #plot rect', function(e) {
+		$(this).attr('fill', '#058DC7');
+	});
 }

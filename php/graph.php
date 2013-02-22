@@ -5,8 +5,6 @@ require_once('graph.class.php');
 require_once('headers.php');
 // retrieve the operation to be performed
 $mode = $_POST['mode'];
-// create a new Query instance
-$graph= new Graph();
 //if the operation is RetrieveContent
 if($mode == 'GetCategoriesGraph') {
 	// retrieve the action parameters from client request
@@ -14,6 +12,8 @@ if($mode == 'GetCategoriesGraph') {
 	// check for valid id
 	if($id != '') {
 		sendHeaders();
+		// create a new Graph instance
+		$graph= new Graph('line');
 		//retrieve the content from the server
 		echo json_encode($graph->getCategoriesGraph($id));
 	}

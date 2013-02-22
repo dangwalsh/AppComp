@@ -2,13 +2,11 @@
 // reference the file containing the content class
 require_once('content.class.php');
 // reference the file containing header function
-//require_once('headers.php');
+require_once('headers.php');
 // retrieve the operation to be performed
 $mode = $_POST['mode'];
-
 // create a new Content instance
 $content = new Content();
-
 //if the operation is RetrieveContent
 if($mode == 'GetContent') {
 	// retrieve the action parameters from client request
@@ -84,17 +82,8 @@ if($mode == 'GetContent') {
 		//retrieve the content from the server
 		echo json_encode($content->getCourseStaffDetail($id));
 	}
+} else if ($mode == 'GetProjectList') {
+	echo json_encode($content->getProjectList());
 }
 
-function sendHeaders()
-{
-	// clear out the output buffer
-	if(ob_get_length()) ob_clean();
-	// send headers so that browser doesn't cache content
-	header('Expires: Mon, 26 July 1997 05:00:00 GMT');
-	header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . 'GMT');
-	header('Cache-Control: no-cache, must-revalidate');
-	header('Pragma: no-cache');
-	header('Content-Type: application/json');
-}
 ?>
