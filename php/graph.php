@@ -13,7 +13,7 @@ if($mode == 'GetCategoriesGraph') {
 	if($id != '') {
 		sendHeaders();
 		// create a new Graph instance
-		$graph= new Graph('line');
+		$graph= new Graph('bar');
 		//retrieve the content from the server
 		echo json_encode($graph->getCategoriesGraph($id));
 	}

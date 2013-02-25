@@ -33,5 +33,5 @@ function displayCategoriesGraph(data, textStatus)
 {
 	var htmlReference = data;
 	// insert the new HTML into the document
-	$('#main')[0].innerHTML += htmlReference;
+	$('#main #progress')[0].innerHTML = htmlReference;
 }	

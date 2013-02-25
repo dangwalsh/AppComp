@@ -1,4 +1,6 @@
 <?php
+// set the locale
+date_default_timezone_set('America/New_York');
 // defines database connection data
 define('DB_HOST', 'localhost');
 define('DB_USER', 'web');

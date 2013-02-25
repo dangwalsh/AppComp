@@ -41,13 +41,13 @@ function buildSummaryPage(e)
 // aggregate and sort functions to build data tables
 function buildDetailPage(e, t)
 {
-	//clear content from the main window
-	$('#main')[0].innerHTML = "";
 	// get the id number of the content that was clicked on
 	var number = e.target.id;
 	var table = t.prop('id');	
 	// check for a valid id and which type content to display
 	if(number != '' && table == 'staffT') {
+		//clear content from the main window
+		$('#main')[0].innerHTML = "<div id='name'></div><div id='progress'></div><div id='courses'></div><div id='projects'></div>";
 		// staff data detailed
 		getStaffDetail(number);
 		// chart the staff members progress
@@ -58,6 +58,8 @@ function buildDetailPage(e, t)
 		getStaffProjectDetail(number);	
 					
 	} else if (number != '' && table == 'courseT') {
+		//clear content from the main window
+	$('#main')[0].innerHTML = "<div id='description'></div><div id='courses'></div>";
 		// course data detailed
 		getCourseDetail(number);	
 		// list of staff members that have attended course
@@ -255,6 +257,83 @@ function getCourseStaffDetail(number)
 	});		
 }
 
+function getProjectList()
+{	
+	// build the JSON data field
+	var params = {
+	  	mode: 'GetProjectList'
+	};
+	// build the JSON AJAX statement
+	$.ajax({
+		url: 'php/insert.php',
+		data: $.param(params),
+		type: 'POST',
+		dataType: 'json',
+		error: function(xhr, textStatus, errorThrown) {
+			displayError(textStatus);
+		},
+		success: function(data, textStatus) {
+			if (data.errno != null) {
+				displayPHPError(data);
+			} else {
+				displayProjectList(data);
+			}
+		}
+	});	
+}
+
+function getCourseList()
+{	
+	// build the JSON data field
+	var params = {
+	  	mode: 'GetCourseList'
+	};
+	// build the JSON AJAX statement
+	$.ajax({
+		url: 'php/insert.php',
+		data: $.param(params),
+		type: 'POST',
+		dataType: 'json',
+		error: function(xhr, textStatus, errorThrown) {
+			displayError(textStatus);
+		},
+		success: function(data, textStatus) {
+			if (data.errno != null) {
+				displayPHPError(data);
+			} else {
+				displayCourseList(data);
+			}
+		}
+	});	
+}
+
+function getCorresponding(t, s, v)
+{
+	// build the JSON data field
+	var params = {
+	  	mode: 'GetCorresponding',
+	  	table: t,
+	  	selector: s,
+	  	value: v
+	};
+	// build the JSON AJAX statement
+	$.ajax({
+		url: 'php/insert.php',
+		data: $.param(params),
+		type: 'POST',
+		dataType: 'json',
+		error: function(xhr, textStatus, errorThrown) {
+			displayError(textStatus);
+		},
+		success: function(data, textStatus) {
+			if (data.errno != null) {
+				displayPHPError(data);
+			} else {
+				displayCorresponding(data, t, s);
+			}
+		}
+	});	
+}
 // function to display the AJAX return content on the page
 function displayStaffSummary(data, textStatus)
 {
@@ -330,7 +409,7 @@ function displayCourseSummary(data, textStatus)
 function displayStaffCourseDetail(data, textStatus)
 {
 	var i = 0;	
-	var htmlReference = "<div>";
+	var htmlReference = "";
 	htmlReference += "<div id='bar'>";
 	htmlReference += "<h2>Courses</h2>";
 	htmlReference += "<table id='courseT'>";
@@ -352,21 +431,14 @@ function displayStaffCourseDetail(data, textStatus)
 	});
 	htmlReference += "</tbody>";
 	htmlReference += "<tfoot>";
-	htmlReference += "<tr><td><select id='course_num'></select></td><td><select id='course_name'></select></td><td>Today</td><td style='width: 15px; border: none;'><button>Add</button></td></tr>";
+	htmlReference += "<tr><td><select id='course_num' class='selector'></select></td><td><select id='course_name' class='selector'></select></td><td>Today</td><td style='width: 15px; border: none;'><button>Add</button></td></tr>";
 	htmlReference += "</tfoot";
 	htmlReference += "</table>";
 	htmlReference += "</div>";
-	htmlReference += "</div>";
+	htmlReference += "";
 	
 	// insert the new HTML into the document
-	/*
-	if (data.references.length > 0) {
-		$('#main')[0].innerHTML += htmlReference;
-	} else {
-		displayNoResults("Course");
-	}
-	*/
-	$('#main')[0].innerHTML += htmlReference;
+	$('#main #courses')[0].innerHTML = htmlReference;
 	getCourseList();
 }
 
@@ -374,10 +446,10 @@ function displayStaffCourseDetail(data, textStatus)
 function displayStaffProjectDetail(data, textStatus)
 {
 	var i = 0;	
-	var htmlReference = "<div>";
+	var htmlReference = "";
 	htmlReference += "<div id='bar'>";
 	htmlReference += "<h2>Projects</h2>";
-	htmlReference += "<table id='courseT'>";
+	htmlReference += "<table id='projectT'>";
 	htmlReference += "<thead>";
 	htmlReference += "<tr><th>Number</th><th>Name</th><th>Date</th></tr>";
 	htmlReference += "</thead><tbody>";
@@ -399,20 +471,13 @@ function displayStaffProjectDetail(data, textStatus)
 	
 	htmlReference += "</tbody>";
 	htmlReference += "<tfoot>";
-	htmlReference += "<tr><td><select id='proj_num'></select></td><td><select id='proj_name'></select></td><td>Today</td><td style='width: 15px; border: none;'><button>Add</button></td></tr>";
+	htmlReference += "<tr><td><select id='proj_num' class='selector'></select></td><td><select id='proj_name' class='selector'></select></td><td>Today</td><td style='width: 15px; border: none;'><button>Add</button></td></tr>";
 	htmlReference += "</tfoot";
 	htmlReference += "</table>";
 	htmlReference += "</div>";
-	htmlReference += "</div>";
+	htmlReference += "";
 	// insert the new HTML into the document
-	/*
-	if (data.references.length > 0) {
-		$('#main')[0].innerHTML += htmlReference;
-	} else {
-		displayNoResults("Project");
-	}
-	*/
-	$('#main')[0].innerHTML += htmlReference;
+	$('#main #projects')[0].innerHTML = htmlReference;
 	getProjectList();
 }
 
@@ -420,37 +485,37 @@ function displayStaffProjectDetail(data, textStatus)
 function displayStaffDetail(data, textStatus)
 {
 	var i = 0;
-	var htmlReference = "<div>";
+	var htmlReference = "";
 	$.each(data.references, function(i, reference) {
-		htmlReference += "<h1>" + reference.first_name + " " + reference.last_name + "</h1>";
+		htmlReference += "<h1 id='" + reference.id + "'>" + reference.first_name + " " + reference.last_name + "</h1>";
 		htmlReference += "<h3>" + reference.role + "</h3>";			
 	});
-	htmlReference += "</div>";	
+	htmlReference += "";	
 	// insert the new HTML into the document
-	$('#main')[0].innerHTML += htmlReference;
+	$('#main #name')[0].innerHTML += htmlReference;
 }
 
 // function to display the AJAX return content on the page
 function displayCourseDetail(data, textStatus)
 {
 	var i = 0;
-	var htmlReference = "<div>";
+	var htmlReference = "";
 	$.each(data.references, function(i, reference) {
 		htmlReference += "<h1>" + reference.title + "</h1>";
 		htmlReference += "<h3>" + reference.id + "</h3>";		
 		htmlReference += "<p class='dateline'>" + reference.date + "</p>";
 		htmlReference += "<p>" + reference.content + "</p>";	
 	});
-	htmlReference += "</div>";	
+	htmlReference += "";	
 	// insert the new HTML into the document
-	$('#main')[0].innerHTML += htmlReference;
+	$('#main #description')[0].innerHTML = htmlReference;
 }
 
 // function to display the AJAX return content on the page
 function displayCourseStaffDetail(data, textStatus)
 {
 	var i = 0;
-	var htmlReference = "<div>";
+	var htmlReference = "";
 	htmlReference += "<div id='bar'>";
 	htmlReference += "<h2>Attendees</h2>";
 	htmlReference += "<table id='staffT' style='width: 100%;'>";
@@ -473,35 +538,11 @@ function displayCourseStaffDetail(data, textStatus)
 	htmlReference += "</tbody>";
 	htmlReference += "</table>";
 	htmlReference += "</div>";
-	htmlReference += "</div>";
+	htmlReference += "";
 	// insert the new HTML into the document
-	$('#main')[0].innerHTML += htmlReference;
+	$('#main #courses')[0].innerHTML = htmlReference;
 }
 
-function getProjectList()
-{	
-	// build the JSON data field
-	var params = {
-	  	mode: 'GetProjectList'
-	};
-	// build the JSON AJAX statement
-	$.ajax({
-		url: 'php/insert.php',
-		data: $.param(params),
-		type: 'POST',
-		dataType: 'json',
-		error: function(xhr, textStatus, errorThrown) {
-			displayError(textStatus);
-		},
-		success: function(data, textStatus) {
-			if (data.errno != null) {
-				displayPHPError(data);
-			} else {
-				displayProjectList(data);
-			}
-		}
-	});	
-}
 
 function displayProjectList(data, textStatus) 
 {
@@ -517,31 +558,6 @@ function displayProjectList(data, textStatus)
 	$('#proj_name')[0].innerHTML = nameReference;
 }
 
-function getCourseList()
-{	
-	// build the JSON data field
-	var params = {
-	  	mode: 'GetCourseList'
-	};
-	// build the JSON AJAX statement
-	$.ajax({
-		url: 'php/insert.php',
-		data: $.param(params),
-		type: 'POST',
-		dataType: 'json',
-		error: function(xhr, textStatus, errorThrown) {
-			displayError(textStatus);
-		},
-		success: function(data, textStatus) {
-			if (data.errno != null) {
-				displayPHPError(data);
-			} else {
-				displayCourseList(data);
-			}
-		}
-	});	
-}
-
 function displayCourseList(data, textStatus) 
 {
 	var numReference = "<option value=''>Number</option>";
@@ -554,6 +570,23 @@ function displayCourseList(data, textStatus)
 	
 	$('#course_num')[0].innerHTML = numReference;
 	$('#course_name')[0].innerHTML = nameReference;
+}
+
+function displayCorresponding(data, t, s)
+{
+	if(t == 'courseT') {
+		if(s == 'course_num'){
+			$('#course_name option').each(function() { this.selected = (this.text == data.title); });
+		} else {
+			$('#course_num option').each(function() { this.selected = (this.text == data.id); });
+		}
+	} else if (t == 'projectT') {
+		if(s == 'proj_num'){
+			$('#proj_name option').each(function() { this.selected = (this.text == data.title); });
+		} else {
+			$('#proj_num option').each(function() { this.selected = (this.text == data.id); });
+		}
+	}
 }
 
 function displayNoResults(table)

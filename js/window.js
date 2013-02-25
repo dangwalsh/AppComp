@@ -156,6 +156,23 @@ function controlTable()
 		var t = $(this).parent().parent().parent();  		
    		buildDetailPage(e, t);
 	});	
+	$('#main').on('click', 'table tfoot tr td select.selector', function(e) {
+		var q = $(this);
+		var v = q.val();
+		var t = q.parent().parent().parent().parent().prop('id');
+		var s = e.target.id;
+		getCorresponding(t, s, v);
+	});
+	$('#main').on('click', '#courseT tfoot tr td button', function(e) {
+		var n = $('#course_num').val();
+		var s = $('#main h1').prop('id');
+		addEntry('courseT', n, s);
+	});
+	$('#main').on('click', '#projectT tfoot tr td button', function(e) {
+		var n = $('#proj_num').val();
+		var s = $('#main h1').prop('id');
+		addEntry('projectT', n, s);
+	});
 }
 
 function controlGraph()

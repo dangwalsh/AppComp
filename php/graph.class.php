@@ -64,9 +64,8 @@ class Graph
 	
 	function generateplotArea()
 	{
-		$svg = '<div style="height: ' . ($this->ymax + 20) . 'px">
-					<h2>Progress</h2>
-					<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+		$svg = '<h2>Progress</h2>
+					<svg style="height: ' . ($this->ymax + 20) . 'px;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" width="100%" height="100%">
 						<filter id="dropshadow" height="130%">
   							<feGaussianBlur stdDeviation="1" />
   							<feOffset dx="0.0" dy="0.0" result="offsetblur"/>
@@ -102,7 +101,7 @@ class Graph
 			$svg =	$svg .	'<g><text fill="#444444" stroke-width="0" stroke="none" font-size="' . $this->labelSize . '" font-family="Arial" y="' . ($this->ymax - $this->labelSize) . '" x="' . (($count * $this->xcoefficient) + $this->yaxis + $this->xcoefficient / 2) . '" text-anchor="middle">' . $key . '</text></g>';
 			++$count;
 		}
-		$svg =	$svg .	'</svg></div>';
+		$svg =	$svg .	'</svg>';
 		
 		return $svg;
 	}
@@ -135,7 +134,8 @@ class Graph
 	{
 		$count = 0;
 		foreach ($this->values as $key => $value) {			
-			$svg =	$svg . '<rect filter="url(#dropshadow)" id="shadow" fill="#333333"  fill-opacity="1.0" stroke-width="1" stroke="none" width="' . ($this->xcoefficient - $this->xcoefficient / 2) . '" height="' . ($value * $this->ycoefficient) . '" x="' . (($count * $this->xcoefficient) + $this->yaxis + $this->xcoefficient / 4) . '" y="' . (($this->maxNum - $value) * $this->ycoefficient) . '"></rect>';
+			//$svg =	$svg . '<rect filter="url(#dropshadow)" id="shadow" fill="#333333"  fill-opacity="1.0" stroke-width="1" stroke="none" width="' . ($this->xcoefficient - $this->xcoefficient / 2) . '" height="' . ($value * $this->ycoefficient) . '" x="' . (($count * $this->xcoefficient) + $this->yaxis + $this->xcoefficient / 4) . '" y="' . (($this->maxNum - $value) * $this->ycoefficient) . '"></rect>';
+			$svg =	$svg . '<rect id="shadow" fill="#333333"  fill-opacity="1.0" stroke-width="1" stroke="none" width="' . ($this->xcoefficient - $this->xcoefficient / 2) . '" height="' . ($value * $this->ycoefficient) . '" x="' . (($count * $this->xcoefficient) + $this->yaxis + $this->xcoefficient / 4) . '" y="' . (($this->maxNum - $value) * $this->ycoefficient) . '"></rect>';
 			$svg =	$svg . '<rect id="' . $key . '" class="plotNode" fill="#058dc7"  fill-opacity="1.0" stroke-width="1" stroke="none" width="' . ($this->xcoefficient - $this->xcoefficient / 2) . '" height="' . ($value * $this->ycoefficient) . '" x="' . (($count * $this->xcoefficient) + $this->yaxis + $this->xcoefficient / 4) . '" y="' . (($this->maxNum - $value) * $this->ycoefficient) . '"></rect>';
 			++$count;
 		}
