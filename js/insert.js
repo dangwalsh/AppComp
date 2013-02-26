@@ -38,12 +38,12 @@ function addEntry(t, n, s)
 // function to display the AJAX return content on the page
 function buildForm(e, t)
 {
-	var htmlReference = "<div id='createForm'><h3 id='type'>" + t + "</h3>";
+	var htmlReference = "<div id='createForm'><h2 id='type'>" + t + "</h2>";
 	htmlReference += "<table><tr><td>Category:</td><td>Subcategory:</td></tr><tr><td><select id='category'><option value='Revit'>Revit</option><option value='Rhino'>Rhino</option><option value='AutoCAD'>AutoCAD</option></select></td>";
 	htmlReference += "<td><select id='subcategory'><option value='Tip'>Tip</option><option value='Reference'>Reference</option></select></td></tr></table>";
 	htmlReference += "<p>Title:</p><input type='text' id='title'/>";
 	htmlReference += "<p>Content:</p><textarea id='content'></textarea>";
-	htmlReference += "<p><input class='create' style='width: 60px; border: none;' type='submit'/></p>"
+	htmlReference += "<form enctype='multipart/form-data'><input name='file' type='file' /><p><input type='button' value='Upload' id='btn' class='create' style='width: 60px;'/></p></form><progress></progress>";
 	htmlReference += "</div>";
 	// insert the new HTML into the document
 	$('#main')[0].innerHTML = htmlReference;
@@ -51,7 +51,6 @@ function buildForm(e, t)
 
 function submitContent(uid, type, cat, sub, title, cont)
 {
-	alert(uid); alert(type); alert(cat); alert(sub); alert(title); alert(cont);
 	// build the JSON data field
 	var params = {
 		mode: 'SubmitContent',
