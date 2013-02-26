@@ -12,6 +12,11 @@ class User
 	private $errlog;
 	private $logtime;
 	
+	public function getUserId() 
+	{
+		return $this->staffid;
+	}
+	
 	public function getUsername() 
 	{
 		return $this->username;

@@ -146,5 +146,19 @@ class Insert
 		return 'Successfully inserted ' . $id . ' into database.';	
 	}
 	
+	public function submitContent($staff_id, $type, $category, $subcategory, $title, $content)
+	{
+		// this query needs to use the $table variable once it is functional
+       	$query = "INSERT INTO $type 
+       			  (staff_id, category, subcategory, title, content, date_created) 
+       			  VALUES ($staff_id, '$category', '$subcategory', '$title', '$content', NOW())";	                 						  
+		// execute the query
+		$result = $this->mMysqli->query($query);
+		// close the database connection	
+		//$result->close();
+		
+		return 'Successfully inserted record into database.';	
+	}
+	
 }
 ?>

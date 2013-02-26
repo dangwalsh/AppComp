@@ -35,5 +35,17 @@ if ($mode == 'GetProjectList') {
 	sendHeaders();
 	// retrieve the content from the server
 	echo json_encode($insert->addEntry($table, $id, $staff));		
+} else if ($mode == 'SubmitContent') {
+	// retrieve JSON parameters
+	$staff_id = $_POST['id'];
+	$type = $_POST['type'];
+	$category = $_POST['category'];
+	$subcategory = $_POST['subcategory'];
+	$title = $_POST['title'];
+	$content = $_POST['content'];
+	// call header function	
+	sendHeaders();
+	// retrieve the content from the server
+	echo json_encode($insert->submitContent($staff_id, $type, $category, $subcategory, $title, $content));		
 }
 ?>

@@ -104,6 +104,7 @@ $(document).ready( function() {
 	controlSidebar();
 	controlTable();
 	controlGraph();
+	controlForm();
 });
 
 // control the display of the content browser
@@ -142,10 +143,18 @@ function controlSidebar()
 	$('#contentT div.title li').click(function(e) {
 		if(pageTable != 'admin') {
 			getContent(e);
-		} else if (e.target.id == 'dashboard'){
+		} else if (e.target.id == 'dashboard') {
 			buildDashboardPage(e);
-		} else {
+		} else if (e.target.id == 'staff') {
 			buildSummaryPage(e);
+		} else if (e.target.id == 'courses') {
+			buildSummaryPage(e);
+		} else if (e.target.id == 'create') {
+			var t = $(this).html();
+			buildForm(e, t);
+		} else if (e.target.id == 'edit') {
+			var t = $(this).html();
+			buildForm(e, t);
 		}
 	});
 }
@@ -181,5 +190,18 @@ function controlGraph()
 		$(this).attr('fill', '#159DD7');
 	}).on('mouseout', 'svg #plot rect', function(e) {
 		$(this).attr('fill', '#058DC7');
+	});
+}
+
+function controlForm()
+{
+	$('#main').on('click', '#createForm input.create', function(e) {
+		var type = $('#type').html();
+		var cat = $('#main #category').val();
+		var sub = $('#main #subcategory').val();
+		var title = $('#main #title').val();
+		var cont = $('#main #content').val();
+		var uid = $('#userid').html();
+		submitContent(uid, type, cat, sub, title, cont);
 	});
 }

@@ -41,7 +41,7 @@ echo <<<EOT
 					<tr>
 						<td>
 EOT;
-echo "<strong>" . $user->getUsername() . "</strong></td><td>login: " . date('g:i a', $user->getLogtime());
+echo "<strong>" . $user->getUsername() . "</strong></td><td>login: " . date('g:i a', $user->getLogtime()) . "</td><td id='userid' style='display:none;'>" . $user->getUserId() . "</td>";
 echo <<<EOT
 						</td>
 						<td><a href="*">Account</a></td>
