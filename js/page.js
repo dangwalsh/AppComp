@@ -74,7 +74,6 @@ function displayPageTable(data, textStatus)
 		htmlReference += "<li id='" + reference.id + "'>" + reference.title + "</li>";	
 		++i;
 	});
-
 	// insert the new HTML into the document
 	$('#contentT')[0].innerHTML = htmlReference;
 	// add display control to new table

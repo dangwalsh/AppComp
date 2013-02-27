@@ -2,7 +2,7 @@
  * @author dwalsh
  */
 // AJAX function that gets the content corresponding to the user click
-function getContent(e)
+function getContent(e, uid)
 {
 	// get the id number of the content that was clicked on
 	var number = e.target.id;
@@ -27,7 +27,7 @@ function getContent(e)
 				if (data.errno != null) {
 					displayPHPError(data);
 				} else {
-					displayContent(data);
+					displayContent(data, textStatus, uid);
 				}
 			}
 		});		
@@ -35,14 +35,16 @@ function getContent(e)
 }
 
 // function to display the AJAX return content on the page
-function displayContent(data, textStatus)
+function displayContent(data, textStatus, uid)
 {
 	// loop through results	
 	$.each(data.references, function(i, reference) {
 		// compose HTML code that displays the content
 		var htmlReference = "<div>";
 		htmlReference += "<h1>" + reference.title + "</h1>";
-		htmlReference += "<h3>" + reference.date_created + "</h3>";
+		htmlReference += "<div id='tabs'></div>";	
+		
+		htmlReference += "<h5>submitted: " + reference.date_created + "</h5>";
 		htmlReference += "<p>" + reference.content + "</p>";
 		if(reference.file_path) {
 			if(pageTable == 'videos') {
@@ -59,6 +61,92 @@ function displayContent(data, textStatus)
 			}
 		}
 		htmlReference += "</div>";
+		// insert the new HTML into the document
+		$('#main')[0].innerHTML = htmlReference;
+		// add the edit tab for authorized users
+		queryGroup(uid, reference.id);
+	});
+}
+
+function queryGroup(uid, id)
+{
+	// build the JSON data field
+	var params = {
+		mode: 'QueryGroup',
+		id: uid
+	};
+	// build the JSON AJAX statement
+	$.ajax({
+		url: 'php/user.php',
+		data: $.param(params),
+		type: 'POST',
+		dataType: 'json',
+		error: function(xhr, textStatus, errorThrown) {
+			displayError(textStatus);
+		},
+		success: function(data, textStatus) {
+			if (data.errno != null) {
+				displayPHPError(data);
+			} else {
+				displayTabs(data, id);
+			}
+		},
+	});
+}
+
+function displayTabs(data, id)
+{
+	if (data == 'admin' || data == 'author') {
+		$('#main #tabs')[0].innerHTML = "<ul><li style='background:none; border-bottom:1px solid #FFFFFF;' id='" + id + "'>View</li><li id='" + id + "'>Edit</li></ul>";
+	}
+}
+
+function editContent(e)
+{
+	// get the id number of the content that was clicked on
+	var number = e.target.id;
+	// check for a valid id
+	if(number != '') {
+		// build the JSON data field
+		var params = {
+			mode: 'GetContent',
+			id: number,
+			table: pageTable // this needs to come from the page click in the nav bar!!!!
+		};
+		// build the JSON AJAX statement
+		$.ajax({
+			url: 'php/content.php',
+			data: $.param(params),
+			type: 'POST',
+			dataType: 'json',
+			error: function(xhr, textStatus, errorThrown) {
+				displayError(textStatus);
+			},
+			success: function(data, textStatus) {
+				if (data.errno != null) {
+					displayPHPError(data);
+				} else {
+					displayEditContent(data);
+				}
+			}
+		});		
+	}	
+}
+
+// function to display the AJAX return content on the page
+function displayEditContent(data, textStatus)
+{
+	// loop through results
+	$.each(data.references, function(i, reference) {
+		var htmlReference = "<div id='createForm'><h2 id='type' style='display: none;'>" + pageTable + "</h2>";
+		htmlReference += "<input type='text' id='title' value='" + reference.title + "'/>";
+		htmlReference += "<div id='tabs'><ul><li id='" + reference.id + "'>View</li><li style='background:none; border-bottom:1px solid #FFFFFF;' id='" + reference.id + "'>Edit</li></ul></div>";
+		htmlReference += "<h5><select id='category'><option value='Revit'>Revit</option><option value='Rhino'>Rhino</option><option value='AutoCAD'>AutoCAD</option></select>";
+		htmlReference += "<select id='subcategory'><option value='Tip'>Tip</option><option value='Reference'>Reference</option></select></h5>";
+		htmlReference += "<textarea id='content'>" + reference.content + "</textarea>";
+		htmlReference += "<form enctype='multipart/form-data'><input name='file' type='file' style='margin: 10px 0 10px 0;'/>";
+		htmlReference += "<div id='bar'><table><tr><td style='width: 80px;'><input type='button' value='Update' id='update' class='update' style='width: 60px;'/></td><td><progress></progress></td></tr></table></div>";
+		htmlReference += "</form></div>";
 		// insert the new HTML into the document
 		$('#main')[0].innerHTML = htmlReference;
 	});

@@ -141,7 +141,7 @@ class Insert
 		// execute the query
 		$result = $this->mMysqli->query($query);
 		// close the database connection	
-		$result->close();
+		//$result->close();
 		
 		return 'Successfully inserted ' . $id . ' into database.';	
 	}

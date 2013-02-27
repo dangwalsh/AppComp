@@ -28,11 +28,11 @@ function buildSummaryPage(e)
 	//var table = t.prop('id');	
 	
 	// check for a valid id and which type content to display
-	if(number == 'staff') {
+	if(number == 'Staff') {
 		// breakdown of course-types the staff member has attended
 		getStaffSummary(number);	
 							
-	} else if (number == 'courses') {
+	} else if (number == 'Courses') {
 		// list of courses and attendance
 		getCourseSummary(number);				
 	}

@@ -1,6 +1,8 @@
 <?php
 // reference the file containing the user class
 require_once('user.class.php');
+// reference the file containing the user class
+require_once('headers.php');
 // retrieve the operation to be performed
 $mode = $_POST['mode'];
 
@@ -15,17 +17,13 @@ if ($mode == 'getUser') {
 		session_start();
 		$user->login(session_id());
 		$_SESSION['user'] = serialize($user);
-	}
-	
-	if(ob_get_length()) ob_clean();
-	// send headers so that browser doesn't cache content
-	header('Expires: Mon, 26 July 1997 05:00:00 GMT');
-	header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . 'GMT');
-	header('Cache-Control: no-cache, must-revalidate');
-	header('Pragma: no-cache');
-	header('Content-Type: application/json');
-		
+	}	
+	sendHeaders();		
 	echo json_encode($user->stats());			
+} else if ($mode == 'QueryGroup') {
+	$staff_id = $_POST['id'];
+	sendHeaders();
+	echo json_encode($user->queryGroup($staff_id));
 }
 
 ?>

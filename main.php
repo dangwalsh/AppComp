@@ -7,7 +7,6 @@ date_default_timezone_set('America/New_York');
 
 if (isset($_SESSION['user'])) {
 	$user = unserialize($_SESSION['user']);
-	$user->getUsername();
 } else {
 	echo "You are not authorized!";
 	exit();
@@ -32,8 +31,7 @@ echo <<<EOT
 	<script type="text/javascript" src="js/statistics.js"></script>
 	<script type="text/javascript" src="js/graph.js"></script>
 	<script type="text/javascript" src="js/insert.js"></script>
-	<script type="text/javascript" src="js/upload.js"></script>
-
+</head>
 	<body onload="MM_preloadImages('images/appcomp.png','images/search.png','images/disclosure.png','images/disclosure_down.png','svg/grad_articles.svg','svg/grad_articles_sel.svg','svg/grad_courses.svg','svg/grad_courses_sel.svg','svg/grad_videos.svg','svg/grad_videos_sel.svg','svg/grad_nopage.svg')">
 		<div>
 			<header>			
@@ -51,11 +49,9 @@ echo <<<EOT
 				<img src="images/appcomp.png">
 			</header>
 			<nav>
-				<table id="adminT">
-					<tr>
-						<td id="admin">Admin</td>
-					</tr>
-				</table>
+EOT;
+if ($user->getUserGroup() == 'admin') echo '<table id="adminT"><tr><td id="admin">Admin</td></tr></table>';				
+echo <<<EOT
 				<table id="navigationT">
 					<tr>
 						<td id="posts">Posts</td>

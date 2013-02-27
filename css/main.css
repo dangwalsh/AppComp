@@ -106,7 +106,7 @@ input, textarea {
 }
 
 progress {
-	height: 24px;
+	display: none;
 	width: 600px;
 	margin-top: 10px;
 }
@@ -269,6 +269,23 @@ progress {
 	padding: 20px;
 }
 
+#tabs {
+	border-bottom: 1px solid #DDDDDD;
+	padding: 5px;
+	margin: 10px 0 10px 0;
+}
+
+#tabs li {
+	display: inline;
+	border: 1px solid #DDDDDD;
+	margin: 3px;
+	padding: 5px 10px 5px 10px;
+	background: #F4F4F4;
+	cursor: pointer;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
 #module {
 	background: #FFFFFF;
 	border: 1px solid #DDDDDD;
@@ -306,10 +323,21 @@ progress {
 
 #createForm textarea {
 	height: 400px;
+	margin: 10px 0 10px 0;
+	font-size: 1em;
+}
+
+#createForm select {
+	font-size: 1em;
 }
 
 #createForm td {
 	padding: 5px 10px 5px 0;
+}
+
+#createForm #title {
+	font-size: 2em;
+	font-weight: bold;
 }
 
 #footerT {
@@ -481,10 +509,6 @@ progress {
 	border-right: 1px solid #444444;
 }
 
-.inactive {
-	opacity: .75;
-}
-
 .js {
 	display: none;
 }
@@ -524,14 +548,31 @@ progress {
 }
 
 .create {
-	border-radius: 3px;
-	padding: 3px;
+	border: 1px solid #30DC68;
+	border-radius: 5px;
+	padding: 5px;
 	color: #FFFFFF;
-	background: #44BB44;
+	background: rgba(16,200,84,1);
 }
 
 .create:hover {
+	border: 1px solid #2FB75B;
+	/*background: #2FB75B;*/
+	background-image: url('../svg/grad_create.svg');
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.update {
+	border: 1px solid #3079ed;
+	border-radius: 5px;
+	padding: 5px;
 	color: #FFFFFF;
-	background: #44CC44;
-	box-shadow: 0 0 1px #777777;
+	background: #4d90fe;
+}
+
+.update:hover {
+	border: 1px solid #2F5BB7;
+	/*background: #2F5BB7;*/
+	background-image: url('../svg/grad_update.svg');
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }

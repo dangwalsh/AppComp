@@ -12,6 +12,11 @@ class User
 	private $errlog;
 	private $logtime;
 	
+	public function getUserGroup()
+	{
+		return $this->usergroup;
+	}
+	
 	public function getUserId() 
 	{
 		return $this->staffid;
@@ -35,6 +40,22 @@ class User
 	public function __destruct()
 	{
 		//$this->uMysqli->close();
+	}
+	
+	public function queryGroup($staff_id) {
+		$group = null;
+		if ($staff_id != '') {
+			$query = "SELECT usergroup
+					  FROM login
+					  WHERE staff_id=$staff_id";
+			$result = $this->uMysqli->query($query);
+			if($result->num_rows){
+				while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+					$group = $row['usergroup'];
+				}
+			}			
+		}
+		return $group;
 	}
 	
 	public function auth($name, $pass) {

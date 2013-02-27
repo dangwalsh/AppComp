@@ -105,6 +105,7 @@ $(document).ready( function() {
 	controlTable();
 	controlGraph();
 	controlForm();
+	controlContent();
 });
 
 // control the display of the content browser
@@ -142,17 +143,18 @@ function controlSidebar()
 	
 	$('#contentT div.title li').click(function(e) {
 		if(pageTable != 'admin') {
-			getContent(e);
-		} else if (e.target.id == 'dashboard') {
+			var uid = $('#userid').html();
+			getContent(e, uid);
+		} else if (e.target.id == 'Dashboard') {
 			buildDashboardPage(e);
-		} else if (e.target.id == 'staff') {
+		} else if (e.target.id == 'Staff') {
 			buildSummaryPage(e);
-		} else if (e.target.id == 'courses') {
+		} else if (e.target.id == 'Courses') {
 			buildSummaryPage(e);
-		} else if (e.target.id == 'create') {
+		} else if (e.target.id == 'Create') {
 			var t = $(this).html();
 			buildForm(e, t);
-		} else if (e.target.id == 'edit') {
+		} else if (e.target.id == 'Edit') {
 			var t = $(this).html();
 			buildForm(e, t);
 		}
@@ -203,16 +205,30 @@ function controlForm()
     	var size = file.size;
     	var type = file.type;
     	//alert(name + ' ' + size +' ' + type);
+    	$('progress').show('fast', null);
 	});
 	
-	$('#main').on('click', '#createForm #btn', function(e) {
+	$('#main').on('click', '#createForm #add', function(e) {
 		var type = $('#type').html();
 		var cat = $('#main #category').val();
 		var sub = $('#main #subcategory').val();
 		var title = $('#main #title').val();
 		var cont = $('#main #content').val();
 		var uid = $('#userid').html();
-		//submitContent(uid, type, cat, sub, title, cont);
+		submitContent(uid, type, cat, sub, title, cont);
 		handleFiles(file);
+	});
+}
+
+function controlContent()
+{
+	$('#main').on('click', '#tabs li', function(e) {
+		var tab = $(this).html();		
+		if (tab == 'View') {
+			var uid = $('#userid').html();
+			getContent(e, uid);
+		} else if (tab == 'Edit') {
+			editContent(e);
+		}
 	});
 }

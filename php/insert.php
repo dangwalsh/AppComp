@@ -1,6 +1,8 @@
 <?php
-// reference the file containing the content class
+// reference the file containing the insert class
 require_once('insert.class.php');
+// reference the file containing the user class
+require_once('user.class.php');
 // reference the file containing header function
 require_once('headers.php');
 // retrieve the operation to be performed
@@ -43,9 +45,17 @@ if ($mode == 'GetProjectList') {
 	$subcategory = $_POST['subcategory'];
 	$title = $_POST['title'];
 	$content = $_POST['content'];
-	// call header function	
-	sendHeaders();
-	// retrieve the content from the server
-	echo json_encode($insert->submitContent($staff_id, $type, $category, $subcategory, $title, $content));		
+	// create user object to check credentials
+	//$user = new User();
+	//$group = $user->queryGroup($staff_id);
+	// only allow content submission if authorized
+	//if ($group =='admin' || $group == 'author'){
+		// call header function	
+		sendHeaders();
+		// retrieve the content from the server
+		echo json_encode($insert->submitContent($staff_id, $type, $category, $subcategory, $title, $content));
+	//} else {
+	//	echo json_encode('You do not have authorization.');
+	//}
 }
 ?>
