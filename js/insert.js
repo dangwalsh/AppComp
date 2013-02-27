@@ -43,8 +43,9 @@ function buildForm(e, t)
 	htmlReference += "<td><select id='subcategory'><option value='Tip'>Tip</option><option value='Reference'>Reference</option></select></td></tr></table>";
 	htmlReference += "<p>Title:</p><input type='text' id='title'/>";
 	htmlReference += "<p>Content:</p><textarea id='content'></textarea>";
-	htmlReference += "<form enctype='multipart/form-data'><input name='file' type='file' /><p><input type='button' value='Upload' id='btn' class='create' style='width: 60px;'/></p></form><progress></progress>";
-	htmlReference += "</div>";
+	htmlReference += "<form enctype='multipart/form-data'><input name='file' type='file' style='margin: 10px 0 10px 0;'/>";
+	htmlReference += "<div id='bar'><table><tr><td style='width: 80px;'><input type='button' value='Upload' id='btn' class='create' style='width: 60px;'/></td><td><progress></progress></td></tr></table></div>";
+	htmlReference += "</form></div>";
 	// insert the new HTML into the document
 	$('#main')[0].innerHTML = htmlReference;
 }

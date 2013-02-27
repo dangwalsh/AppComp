@@ -107,7 +107,8 @@ input, textarea {
 
 progress {
 	height: 24px;
-	width: 400px;
+	width: 600px;
+	margin-top: 10px;
 }
 
 #log {
@@ -298,11 +299,9 @@ progress {
 	color: #444444;
 }
 
-
 #createForm input, #createForm textarea {
-	width: 800px;
+	width: 100%;
 	border: 1px solid #DDDDDD;
-	padding: 3px;
 }
 
 #createForm textarea {

@@ -32,7 +32,7 @@ echo <<<EOT
 	<script type="text/javascript" src="js/statistics.js"></script>
 	<script type="text/javascript" src="js/graph.js"></script>
 	<script type="text/javascript" src="js/insert.js"></script>
-	<script type="text/javascript" src="js/upload.js"></script>>
+	<script type="text/javascript" src="js/upload.js"></script>
 
 	<body onload="MM_preloadImages('images/appcomp.png','images/search.png','images/disclosure.png','images/disclosure_down.png','svg/grad_articles.svg','svg/grad_articles_sel.svg','svg/grad_courses.svg','svg/grad_courses_sel.svg','svg/grad_videos.svg','svg/grad_videos_sel.svg','svg/grad_nopage.svg')">
 		<div>
