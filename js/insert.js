@@ -51,7 +51,7 @@ function buildForm(e, t)
 
 function submitContent(uid, type, cat, sub, title, cont)
 {
-	alert(uid); alert(type); alert(cat); alert(sub); alert(title); alert(cont);
+	//alert(uid); alert(type); alert(cat); alert(sub); alert(title); alert(cont);
 	// build the JSON data field
 	var params = {
 		mode: 'SubmitContent',
