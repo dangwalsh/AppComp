@@ -195,13 +195,24 @@ function controlGraph()
 
 function controlForm()
 {
-	$('#main').on('click', '#createForm input.create', function(e) {
+	var file;
+	
+	$('#main').on('change', ':file', function(e) {
+    	file = this.files[0];
+    	var name = file.name;
+    	var size = file.size;
+    	var type = file.type;
+    	//alert(name + ' ' + size +' ' + type);
+	});
+	
+	$('#main').on('click', '#createForm #btn', function(e) {
 		var type = $('#type').html();
 		var cat = $('#main #category').val();
 		var sub = $('#main #subcategory').val();
 		var title = $('#main #title').val();
 		var cont = $('#main #content').val();
 		var uid = $('#userid').html();
-		submitContent(uid, type, cat, sub, title, cont);
+		//submitContent(uid, type, cat, sub, title, cont);
+		handleFiles(file);
 	});
 }

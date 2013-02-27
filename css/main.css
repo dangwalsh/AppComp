@@ -105,6 +105,11 @@ input, textarea {
 
 }
 
+progress {
+	height: 24px;
+	width: 400px;
+}
+
 #log {
 	border: 1px solid #3D4B66;
 	color: #FFFFFF;
@@ -296,13 +301,16 @@ input, textarea {
 
 #createForm input, #createForm textarea {
 	width: 800px;
-	border-radius: 2px;
 	border: 1px solid #DDDDDD;
 	padding: 3px;
 }
 
 #createForm textarea {
 	height: 400px;
+}
+
+#createForm td {
+	padding: 5px 10px 5px 0;
 }
 
 #footerT {
@@ -517,6 +525,8 @@ input, textarea {
 }
 
 .create {
+	border-radius: 3px;
+	padding: 3px;
 	color: #FFFFFF;
 	background: #44BB44;
 }
@@ -524,5 +534,5 @@ input, textarea {
 .create:hover {
 	color: #FFFFFF;
 	background: #44CC44;
-	box-shadow: 0px 0px 2px #AAAAAA;
+	box-shadow: 0 0 1px #777777;
 }
