@@ -45,17 +45,16 @@ if ($mode == 'GetProjectList') {
 	$subcategory = $_POST['subcategory'];
 	$title = $_POST['title'];
 	$content = $_POST['content'];
-	// create user object to check credentials
-	//$user = new User();
-	//$group = $user->queryGroup($staff_id);
-	// only allow content submission if authorized
-	//if ($group =='admin' || $group == 'author'){
-		// call header function	
-		sendHeaders();
+	$cid = $_POST['cid'];
+	// call header function	
+	sendHeaders();
+	if ($cid == null) {
 		// retrieve the content from the server
 		echo json_encode($insert->submitContent($staff_id, $type, $category, $subcategory, $title, $content));
-	//} else {
-	//	echo json_encode('You do not have authorization.');
-	//}
+	} else {
+		// retrieve the content from the server
+		echo json_encode($insert->updateContent($staff_id, $type, $category, $subcategory, $title, $content, $cid));
+	}
+
 }
 ?>

@@ -198,25 +198,30 @@ function controlGraph()
 function controlForm()
 {
 	var file;
-	
+
 	$('#main').on('change', ':file', function(e) {
     	file = this.files[0];
     	var name = file.name;
     	var size = file.size;
     	var type = file.type;
-    	//alert(name + ' ' + size +' ' + type);
     	$('progress').show('fast', null);
 	});
 	
-	$('#main').on('click', '#createForm #add', function(e) {
-		var type = $('#type').html();
+	$('#main').on('click', '#createForm #submit', function(e) {
+		var type = $('#type span').html();
 		var cat = $('#main #category').val();
 		var sub = $('#main #subcategory').val();
 		var title = $('#main #title').val();
 		var cont = $('#main #content').val();
 		var uid = $('#userid').html();
-		submitContent(uid, type, cat, sub, title, cont);
-		handleFiles(file);
+		var cid = $('#contentId').val();
+		var path = '';
+		if (file) {
+			path = "php/uploads/" + file.name;
+			alert(path); 
+			handleFiles(file);
+		}
+		submitContent(uid, type, cat, sub, title, cont, cid);
 	});
 }
 

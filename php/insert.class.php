@@ -160,5 +160,23 @@ class Insert
 		return 'Successfully inserted record into database.';	
 	}
 	
+	public function updateContent($staff_id, $type, $category, $subcategory, $title, $content, $cid)
+	{
+		// this query needs to use the $table variable once it is functional
+       	$query = "UPDATE $type 
+       			  SET staff_id=		 $staff_id, 
+       			  	  category=		'$category', 
+       			  	  subcategory=	'$subcategory', 
+       			  	  title=		'$title', 
+       			  	  content=		'$content', 
+       			  	  date_updated=	 NOW() 
+       			  WHERE id=$cid";	                 						  
+		// execute the query
+		$result = $this->mMysqli->query($query);
+		// close the database connection	
+		//$result->close();
+		
+		return 'Successfully updated record in database.';	
+	}	
 }
 ?>

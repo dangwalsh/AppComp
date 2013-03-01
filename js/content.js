@@ -97,7 +97,7 @@ function queryGroup(uid, id)
 function displayTabs(data, id)
 {
 	if (data == 'admin' || data == 'author') {
-		$('#main #tabs')[0].innerHTML = "<ul><li style='background:none; border-bottom:1px solid #FFFFFF;' id='" + id + "'>View</li><li id='" + id + "'>Edit</li></ul>";
+		$('#main #tabs')[0].innerHTML = "<ul class='primary'><li class='active' id='" + id + "'>View</li><li class='inactive' id='" + id + "'>Edit</li></ul>";
 	}
 }
 
@@ -138,14 +138,14 @@ function displayEditContent(data, textStatus)
 {
 	// loop through results
 	$.each(data.references, function(i, reference) {
-		var htmlReference = "<div id='createForm'><h2 id='type' style='display: none;'>" + pageTable + "</h2>";
+		var htmlReference = "<div id='createForm'>";
 		htmlReference += "<input type='text' id='title' value='" + reference.title + "'/>";
-		htmlReference += "<div id='tabs'><ul><li id='" + reference.id + "'>View</li><li style='background:none; border-bottom:1px solid #FFFFFF;' id='" + reference.id + "'>Edit</li></ul></div>";
-		htmlReference += "<h5><select id='category'><option value='Revit'>Revit</option><option value='Rhino'>Rhino</option><option value='AutoCAD'>AutoCAD</option></select>";
-		htmlReference += "<select id='subcategory'><option value='Tip'>Tip</option><option value='Reference'>Reference</option></select></h5>";
+		htmlReference += "<div id='tabs'><ul class='primary'><li class='inactive' id='" + reference.id + "'>View</li><li class='active' id='" + reference.id + "'>Edit</li></ul></div>";
+		htmlReference += "<p><h5 id='type'><span>" + pageTable + "</span> >> <select id='category'><option value='Revit'>Revit</option><option value='Rhino'>Rhino</option><option value='AutoCAD'>AutoCAD</option></select> >> ";
+		htmlReference += "<select id='subcategory'><option value='Tip'>Tip</option><option value='Reference'>Reference</option></select></h5></p>";
 		htmlReference += "<textarea id='content'>" + reference.content + "</textarea>";
-		htmlReference += "<form enctype='multipart/form-data'><input name='file' type='file' style='margin: 10px 0 10px 0;'/>";
-		htmlReference += "<div id='bar'><table><tr><td style='width: 80px;'><input type='button' value='Update' id='update' class='update' style='width: 60px;'/></td><td><progress></progress></td></tr></table></div>";
+		htmlReference += "<form enctype='multipart/form-data'><input name='file' type='file' style='margin: 10px 0 10px 0;'/><input type='hidden' id='contentId' value='" + reference.id + "'/>";
+		htmlReference += "<div id='bar'><table><tr><td style='width: 80px;'><input type='button' value='Update' id='submit' class='update' style='width: 60px;'/></td><td><progress></progress></td></tr></table></div>";
 		htmlReference += "</form></div>";
 		// insert the new HTML into the document
 		$('#main')[0].innerHTML = htmlReference;

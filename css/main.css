@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	font-family: Lucida Grande,Arial,Helvetica,sans-serif;
+	-moz-box-sizing: border-box;
 }
 
 body {
@@ -27,7 +28,7 @@ header h1 {
 nav {
 	color: #FFFFFF;
 	box-shadow: 0 2px 3px #999999;
-	height:36px;
+	height: 36px;
 }
 
 nav td {
@@ -108,7 +109,7 @@ input, textarea {
 progress {
 	display: none;
 	width: 600px;
-	margin-top: 10px;
+	height: 28px;
 }
 
 #log {
@@ -269,21 +270,20 @@ progress {
 	padding: 20px;
 }
 
-#tabs {
+#tabs ul{
 	border-bottom: 1px solid #DDDDDD;
-	padding: 5px;
 	margin: 10px 0 10px 0;
+	padding: 5px;
+	max-width: 1170px;
 }
 
 #tabs li {
 	display: inline;
-	border: 1px solid #DDDDDD;
-	margin: 3px;
 	padding: 5px 10px 5px 10px;
-	background: #F4F4F4;
 	cursor: pointer;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
+	margin: 5px;
 }
 
 #module {
@@ -319,6 +319,7 @@ progress {
 #createForm input, #createForm textarea {
 	width: 100%;
 	border: 1px solid #DDDDDD;
+	max-width: 1180px;
 }
 
 #createForm textarea {
@@ -557,7 +558,6 @@ progress {
 
 .create:hover {
 	border: 1px solid #2FB75B;
-	/*background: #2FB75B;*/
 	background-image: url('../svg/grad_create.svg');
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
@@ -572,7 +572,22 @@ progress {
 
 .update:hover {
 	border: 1px solid #2F5BB7;
-	/*background: #2F5BB7;*/
 	background-image: url('../svg/grad_update.svg');
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
+
+.primary {
+
+}
+
+.inactive {	
+	border: 1px solid #DDDDDD;
+	border-bottom: none;
+	background: #F4F4F4;
+}
+
+.active {
+ 	background: #FFFFFF; 
+ 	border: 1px solid #DDDDDD;
+ 	border-bottom: 2px solid #FFFFFF;
+ }

@@ -57,6 +57,7 @@ function displayPageTable(data, textStatus)
 			htmlReference += "<p class='cat'>" + reference.category + "</p>";
 			htmlReference += "<div>";
 			cat = reference.category;
+			sub = "";
 		}
 
 		if(reference.subcategory != sub) {
