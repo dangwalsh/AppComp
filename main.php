@@ -32,7 +32,7 @@ echo <<<EOT
 	<script type="text/javascript" src="js/graph.js"></script>
 	<script type="text/javascript" src="js/insert.js"></script>
 </head>
-	<body onload="MM_preloadImages('images/appcomp.png','images/search.png','images/disclosure.png','images/disclosure_down.png','svg/grad_articles.svg','svg/grad_articles_sel.svg','svg/grad_courses.svg','svg/grad_courses_sel.svg','svg/grad_videos.svg','svg/grad_videos_sel.svg','svg/grad_nopage.svg')">
+	<body onload="MM_preloadImages('images/appcomp.png','images/search.png','images/disclosure.png','images/disclosure_down.png','svg/grad_articles.svg','svg/grad_articles_sel.svg','svg/grad_courses.svg','svg/grad_courses_sel.svg','svg/grad_videos.svg','svg/grad_videos_sel.svg','svg/grad_nopage.svg','svg/delete.svg','svg/delete_hover.svg','svg/upload.svg','svg/upload_hover.svg')">
 		<div>
 			<header>			
 				<table id="accountT">
@@ -43,7 +43,7 @@ echo "<strong>" . $user->getUsername() . "</strong></td><td>login: " . date('g:i
 echo <<<EOT
 						</td>
 						<td><a href="*">Account</a></td>
-						<td><a href="http://development/index.php">Logout</a></td>
+						<td><a href="index.php">Logout</a></td>
 					</tr>
 				</table>
 				<img src="images/appcomp.png">

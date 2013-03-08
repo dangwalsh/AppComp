@@ -1,7 +1,6 @@
 /**
  * @author dwalsh
  */
-
 //preload assets to be used on this page
 function MM_preloadImages()
 {
@@ -17,7 +16,6 @@ function MM_preloadImages()
 		}
 	}
 }
-
 // perform fadein and set sidebar height
 $(window).load( function () {
 	$('html').fadeIn().removeClass('js');
@@ -27,7 +25,6 @@ $(window).load( function () {
 	var h = f.offset().top - n.offset().top;
 	s.height(h);
 });
-
 // adjust sidebar height when window is resized
 $(window).resize( function () {
 	var n = $('nav');
@@ -35,8 +32,11 @@ $(window).resize( function () {
 	var s = $('#sidebar');
 	var sh = f.offset().top - n.offset().top;
 	s.height(sh);
+	var b = $('#bar');
+	var p = $('progress');
+	var w = b.width() - 100;
+	p.width(w);
 });
-
 // adjust sidebar height when window is scrolled
 $(window).scroll( function () {
 	var n = $('nav');
@@ -45,89 +45,53 @@ $(window).scroll( function () {
 	var h = f.offset().top - n.offset().top;
 	s.height(h);
 });
-
 // event handlers for page browsing
 $(document).ready( function() {	
-	if ($('#log')) {
-		// erase errors when user starts typing
-		$('#name').click(function() {
-			$('#response')[0].innerHTML = "";
-			$('#name').removeClass('missing');
-		});
-		
-		$('#pass').click(function() {
-			$('#response')[0].innerHTML = "";
-			$('#pass').removeClass('missing');
-		});
-		
-		// allow user to log back in
-		$('#reset').click(function() {
-			window.location = "index.php";
-		});
-		
-		// verify username and password and create 
-		//user object or display error
-		$('#submit').click(function() {
-			
-			$('#name').removeClass('missing');
-			$('#pass').removeClass('missing');
-			var name = $('#name').val();
-			var pass = $('#pass').val();
-			
-			if (name == "") {
-				$('#name').addClass('missing');
-			}
-			if (pass == "") {
-				$('#pass').addClass('missing');
-			}
-			
-			getUser(name, pass);
-		});
-	} 
-	// change the color of the nav bar to match the page
-	// before getting new content from DB!!!
-	setNavColor();
-	
-	// show the table of the page that is clicked	
-	$('nav tr td').click(function(e) {
-		getPageTable(e);
-	});
-
-	// get the key word and perform content search when clicked
-	$('#search_btn').click(function() {
-		var word = $('#search_field').val();
-		searchPageTable(word);
-	});
-	
-	// once a new table is populated the event handlers 
-	// must be appended
+	// change the color of the nav bar to match the page before getting new content from DB!!!
+	setNavColor();	
+	controlNavbar();
+	controlSearchbar();
 	controlSidebar();
 	controlTable();
 	controlGraph();
 	controlForm();
 	controlContent();
 });
-
-// control the display of the content browser
+// show the table of the page that is clicked	
+function controlNavbar()
+{	
+	$('nav tr td').click(function(e) {
+		getPageTable(e);
+	});	
+}
+// get the key word and perform content search when clicked
+function controlSearchbar()
+{
+	$('#search_btn').click(function() {
+		var word = $('#search_field').val();
+		searchPageTable(word);
+	});	
+}
+// function to add user interaction to sidebar
 function controlSidebar()
 {
-	//$('#contentT div').hide();
+	// set accordion to be completely collapsed
 	$('#contentT div div').addClass('collapsed');
 	$('#contentT div p.sub').addClass('collapsed');
-
+	// clicking a category expands the list of subcategories
 	$('#contentT p.cat').click(function() {
 		$(this).next().toggle('fast', null);
 		$('#contentT div p.sub').next().hide().removeClass('expanded');
 		$('#contentT div p.sub img').removeClass('rotate');
 	});
-	
+	// clicking a subcategory expands the list of titles and rotates the disclosure indicator down
 	$('#contentT div div').hide();
 	$('#contentT div p.sub').click(function() {
 		$(this).removeClass('expanded');
 		$(this).next().toggle('fast', null);
 		$(this).find('>:first-child').toggleClass('rotate');
 	});
-	
+	// clicking on a title makes it bold applies the list hilight and closes other lists and rotates their disclosure indicators back
 	$('#contentT li').click(function() {
 		$('#contentT div div').hide();		
 		$(this).parent().parent().show();
@@ -140,71 +104,89 @@ function controlSidebar()
 		$('#contentT li').removeClass('selected');
 		$(this).addClass('selected');
 	});
-	
+	// create the appropriate element in the main window
 	$('#contentT div.title li').click(function(e) {
+		// if you're not on the admin page jsut retrieve the selected content
 		if(pageTable != 'admin') {
 			var uid = $('#userid').html();
 			getContent(e, uid);
-		} else if (e.target.id == 'Dashboard') {
-			buildDashboardPage(e);
-		} else if (e.target.id == 'Staff') {
-			buildSummaryPage(e);
-		} else if (e.target.id == 'Courses') {
-			buildSummaryPage(e);
-		} else if (e.target.id == 'Create') {
-			var t = $(this).html();
-			buildForm(e, t);
-		} else if (e.target.id == 'Edit') {
-			var t = $(this).html();
-			buildForm(e, t);
+		} else {
+			// generate the form to enter new content into the db
+			if (e.target.id == 'Create') {
+				var t = $(this).html();
+				buildForm(e, t);
+			// otherwise generate the dashboard page
+			} else {
+				buildDashboardPage(e);
+			}
 		}
 	});
 }
-
+// function to add user interaction to tables
 function controlTable() 
 {
 	$('#main').on('click', 'table tbody tr td:first-child', function(e) {
 		var t = $(this).parent().parent().parent();  		
    		buildDetailPage(e, t);
 	});	
-	$('#main').on('click', 'table tfoot tr td select.selector', function(e) {
+	$('#main').on('change', 'table tfoot tr td select.selector', function(e) {
 		var q = $(this);
 		var v = q.val();
 		var t = q.parent().parent().parent().parent().prop('id');
 		var s = e.target.id;
-		getCorresponding(t, s, v);
+		getCorresponding(t, s, v); 
 	});
-	$('#main').on('click', '#courseT tfoot tr td button', function(e) {
+	$('#main').on('click', '#courseT tfoot tr td #upload', function(e) {
 		var n = $('#course_num').val();
 		var s = $('#main h1').prop('id');
 		addEntry('courseT', n, s);
 	});
-	$('#main').on('click', '#projectT tfoot tr td button', function(e) {
+	$('#main').on('click', '#projectT tfoot tr td #upload', function(e) {
 		var n = $('#proj_num').val();
 		var s = $('#main h1').prop('id');
 		addEntry('projectT', n, s);
 	});
-}
-
-function controlGraph()
-{
-	$('#main').on('mouseover', 'svg #plot rect', function(e) {
-		$(this).attr('fill', '#159DD7');
-	}).on('mouseout', 'svg #plot rect', function(e) {
-		$(this).attr('fill', '#058DC7');
+	$('#main').on('click', '#courseT tbody tr td #delete', function(e) {
+		var n = $(this).parent().prev().prev().prev().children().html();
+		var s = $('#main h1').prop('id');
+		deleteEntry('courseT', n, s);
+	});
+	$('#main').on('click', '#projectT tbody tr td #delete', function(e) {
+		var n = $(this).parent().prev().prev().prev().children().html();
+		var s = $('#main h1').prop('id');
+		deleteEntry('projectT', n, s);
 	});
 }
-
+// function to add user interaction to graphs
+function controlGraph()
+{
+	$('#main').on('mouseover', 'svg #plot>rect', function(e) {
+		$(this).attr('fill', '#159DD7');
+		$('#' + e.target.id + "_group").show();
+	}).on('mouseout', 'svg #plot>rect', function(e) {
+		$(this).attr('fill', '#058DC7');
+		$('#' + e.target.id + "_group").hide();
+	});
+	$('#main').on('change', '#progress p select', function(e) {
+		var uid = $('#name h1').prop('id');
+		var graph = $(this).val();
+		getCategoriesGraph(uid, graph);
+	});
+}
+// function to add user interaction to submission forms
 function controlForm()
 {
 	var file;
 
 	$('#main').on('change', ':file', function(e) {
     	file = this.files[0];
-    	var name = file.name;
-    	var size = file.size;
-    	var type = file.type;
-    	$('progress').show('fast', null);
+    	//var name = file.name;
+    	//var size = file.size;
+    	//var type = file.type;
+    	var b = $('#bar');
+		var p = $('progress');		
+		p.width(b.width() - 100);
+    	p.show('fast', null);		
 	});
 	
 	$('#main').on('click', '#createForm #submit', function(e) {
@@ -218,13 +200,12 @@ function controlForm()
 		var path = '';
 		if (file) {
 			path = "php/uploads/" + file.name;
-			alert(path); 
 			handleFiles(file);
 		}
 		submitContent(uid, type, cat, sub, title, cont, cid);
 	});
 }
-
+// function to add admin ability to edit content
 function controlContent()
 {
 	$('#main').on('click', '#tabs li', function(e) {

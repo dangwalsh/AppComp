@@ -2,12 +2,13 @@
  * @author dwalsh
  */
 // aggregate and sort functions to build data tables
-function getCategoriesGraph(number)
+function getCategoriesGraph(n, g)
 {	
 	// build the JSON data field
 	var params = {
 	  	mode: 'GetCategoriesGraph',
-		id: number
+		id: n,
+		graph: g
 	};
 	// build the JSON AJAX statement
 	$.ajax({
@@ -23,6 +24,7 @@ function getCategoriesGraph(number)
 				displayPHPError(data);
 			} else {
 				displayCategoriesGraph(data);
+				selectOption(g);
 			}
 		}
 	});		
@@ -35,3 +37,8 @@ function displayCategoriesGraph(data, textStatus)
 	// insert the new HTML into the document
 	$('#main #progress')[0].innerHTML = htmlReference;
 }	
+
+function selectOption(g)
+{
+	$('#progress p select option').each(function() { this.selected = (this.value == g); });
+}

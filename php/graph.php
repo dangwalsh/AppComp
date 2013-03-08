@@ -9,11 +9,12 @@ $mode = $_POST['mode'];
 if($mode == 'GetCategoriesGraph') {
 	// retrieve the action parameters from client request
 	$id = $_POST['id'];	
+	$g = $_POST['graph'];
 	// check for valid id
 	if($id != '') {
 		sendHeaders();
 		// create a new Graph instance
-		$graph= new Graph('bar');
+		$graph = new Graph($g);
 		//retrieve the content from the server
 		echo json_encode($graph->getCategoriesGraph($id));
 	}

@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="js/error_handler.js"></script>
-	<script type="text/javascript" src="js/window.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
 	<script type="text/javascript" src="js/user.js"></script>
 </head>
 

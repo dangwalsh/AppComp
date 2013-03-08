@@ -37,6 +37,15 @@ if ($mode == 'GetProjectList') {
 	sendHeaders();
 	// retrieve the content from the server
 	echo json_encode($insert->addEntry($table, $id, $staff));		
+} else if ($mode == 'DeleteEntry') {
+	// retrieve JSON parameters
+	$table = $_POST['table'];
+	$id = $_POST['id'];
+	$staff = $_POST['staff'];
+	// call header function	
+	sendHeaders();
+	// retrieve the content from the server
+	echo json_encode($insert->deleteEntry($table, $id, $staff));		
 } else if ($mode == 'SubmitContent') {
 	// retrieve JSON parameters
 	$staff_id = $_POST['id'];

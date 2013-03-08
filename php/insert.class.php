@@ -135,7 +135,7 @@ class Insert
 		}
 		
 		// this query needs to use the $table variable once it is functional
-       	$query = "INSERT INTO staff_courses 
+       	$query = "INSERT INTO $t 
        			(staff_id, $col, date) 
        			VALUES ($staff, '$id', NOW())";	                    						  
 		// execute the query
@@ -144,6 +144,32 @@ class Insert
 		//$result->close();
 		
 		return 'Successfully inserted ' . $id . ' into database.';	
+	}
+	
+	public function deleteEntry($table, $id, $staff)
+	{
+		$t = "";
+		$col = "";
+		// set the type of query
+		if ($table == 'courseT') {
+			$t = 'staff_courses';
+			$col = 'course_id';
+		} else {
+			$t = 'staff_projects';
+			$col = 'proj_id';
+		}
+		
+		// this query needs to use the $table variable once it is functional
+       	$query = "DELETE FROM $t 
+       			  WHERE $col = '$id'
+       			  AND staff_id = '$staff'
+       			  LIMIT 1";	                    						  
+		// execute the query
+		$result = $this->mMysqli->query($query);
+		// close the database connection	
+		//$result->close();
+		
+		return 'Successfully deleted ' . $id . ' from database.';	
 	}
 	
 	public function submitContent($staff_id, $type, $category, $subcategory, $title, $content)

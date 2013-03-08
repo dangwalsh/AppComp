@@ -68,7 +68,7 @@ class Content
                      			FROM staff_courses
                     			GROUP BY staff_id) AS t ON s.staff_id = t.staff_id
                     		LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS fun
-                     			FROM staff_courses WHERE course_id LIKE '%FUN%'
+                     			FROM staff_courses WHERE course_id LIKE '%REV%'
                     			GROUP BY staff_id) AS fu ON s.staff_id = fu.staff_id
 							LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS des
                      			FROM staff_courses WHERE course_id LIKE '%DES%'
@@ -86,7 +86,7 @@ class Content
                      			FROM staff_courses WHERE course_id LIKE '%NAV%'
                     			GROUP BY staff_id) AS na ON s.staff_id = na.staff_id
                     		LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS ele
-                     			FROM staff_courses WHERE course_id LIKE '%ELE%'
+                     			FROM staff_courses WHERE course_id LIKE '%REL%'
                     			GROUP BY staff_id) AS el ON s.staff_id = el.staff_id";					  
 		}
 		// execute the query

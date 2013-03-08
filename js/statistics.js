@@ -51,7 +51,7 @@ function buildDetailPage(e, t)
 		// staff data detailed
 		getStaffDetail(number);
 		// chart the staff members progress
-		getCategoriesGraph(number);
+		getCategoriesGraph(number, 'bar');
 		// list of courses the staff member has attended
 		getStaffCourseDetail(number);	
 		// list of projects the staff member has worked on
@@ -414,7 +414,7 @@ function displayStaffCourseDetail(data, textStatus)
 	htmlReference += "<h2>Courses</h2>";
 	htmlReference += "<table id='courseT'>";
 	htmlReference += "<thead>";
-	htmlReference += "<tr><th>Number</th><th>Name</th><th>Date</th></tr>";
+	htmlReference += "<tr><th style='width:120px;'>Number</th><th>Name</th><th style='width:120px;'>Date</th><th style='width:32px;'></th></tr>";
 	htmlReference += "</thead><tbody>";
 	// loop through results	
 	$.each(data.references, function(i, reference) {
@@ -425,13 +425,13 @@ function displayStaffCourseDetail(data, textStatus)
 			var even = "";
 		}
 		// compose HTML code that displays the content
-		htmlReference += "<tr" + even + "><td><a id='" + reference.id + "'>" + reference.id + "</a></td><td>" + reference.title + "</td><td>" + reference.date + "</td></tr>";			
+		htmlReference += "<tr" + even + "><td><a id='" + reference.id + "'>" + reference.id + "</a></td><td>" + reference.title + "</td><td>" + reference.date + "</td><td><div id='delete'></div></td></tr>";			
 		// increment counter
 		++i;
 	});
 	htmlReference += "</tbody>";
 	htmlReference += "<tfoot>";
-	htmlReference += "<tr><td><select id='course_num' class='selector'></select></td><td><select id='course_name' class='selector'></select></td><td>Today</td><td style='width: 15px; border: none;'><button>Add</button></td></tr>";
+	htmlReference += "<tr><td><select id='course_num' class='selector'></select></td><td><select id='course_name' class='selector'></select></td><td>Today</td><td><div id='upload'></div></td></tr>";
 	htmlReference += "</tfoot";
 	htmlReference += "</table>";
 	htmlReference += "</div>";
@@ -451,7 +451,7 @@ function displayStaffProjectDetail(data, textStatus)
 	htmlReference += "<h2>Projects</h2>";
 	htmlReference += "<table id='projectT'>";
 	htmlReference += "<thead>";
-	htmlReference += "<tr><th>Number</th><th>Name</th><th>Date</th></tr>";
+	htmlReference += "<tr><th style='width:120px;'>Number</th><th>Name</th><th style='width:120px;'>Date</th><th style='width:32px;'></th></tr>";
 	htmlReference += "</thead><tbody>";
 	// loop through results	
 	$.each(data.references, function(i, reference) {
@@ -464,14 +464,14 @@ function displayStaffProjectDetail(data, textStatus)
 		// replace null values with tick marks
 		if (reference.total == null) reference.total = "-";
 		// compose HTML code that displays the content
-		htmlReference += "<tr" + even + "><td><a id='" + reference.id + "'>" + reference.id + "</a></td><td>" + reference.title + "</td><td>" + reference.date + "</td></tr>";			
+		htmlReference += "<tr" + even + "><td><a id='" + reference.id + "'>" + reference.id + "</a></td><td>" + reference.title + "</td><td>" + reference.date + "</td><td><div id='delete'></div></td></tr>";			
 		// increment counter
 		++i;
 	});
 	
 	htmlReference += "</tbody>";
 	htmlReference += "<tfoot>";
-	htmlReference += "<tr><td><select id='proj_num' class='selector'></select></td><td><select id='proj_name' class='selector'></select></td><td>Today</td><td style='width: 15px; border: none;'><button>Add</button></td></tr>";
+	htmlReference += "<tr><td><select id='proj_num' class='selector'></select></td><td><select id='proj_name' class='selector'></select></td><td>Today</td><td><div id='upload'></div></td></tr>";
 	htmlReference += "</tfoot";
 	htmlReference += "</table>";
 	htmlReference += "</div>";
