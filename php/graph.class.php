@@ -180,7 +180,8 @@ class Graph
 							 dc.doc, 
 							 co.coo, 
 							 bi.bim, 
-							 na.nav
+							 na.nav,
+							 re.rel
 					   FROM staff s
 					   		LEFT JOIN (SELECT staff_id, course_id, COUNT(staff_id) AS fun
                      			FROM staff_courses WHERE course_id LIKE '%REV%'
@@ -200,6 +201,9 @@ class Graph
                     		LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS nav
                      			FROM staff_courses WHERE course_id LIKE '%NAV%'
                     			GROUP BY staff_id) AS na ON s.staff_id = na.staff_id
+                    		LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS rel
+                     			FROM staff_courses WHERE course_id LIKE '%REL%'
+                    			GROUP BY staff_id) AS re ON s.staff_id = re.staff_id
 			  			WHERE s.staff_id = $id";				  
 		}
 		// execute the query
@@ -216,6 +220,7 @@ class Graph
 				$reference['Coordination'] = $row['coo'];
 				$reference['BIM Coordinator'] = $row['bim'];
 				$reference['Navisworks'] = $row['nav'];	
+				$reference['Elective'] = $row['rel'];	
 			}
 			// close the database connection as soon as possible
 			$result->close();

@@ -87,7 +87,8 @@ class Content
                     			GROUP BY staff_id) AS na ON s.staff_id = na.staff_id
                     		LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS ele
                      			FROM staff_courses WHERE course_id LIKE '%REL%'
-                    			GROUP BY staff_id) AS el ON s.staff_id = el.staff_id";					  
+                    			GROUP BY staff_id) AS el ON s.staff_id = el.staff_id
+                    	ORDER BY s.last_name";					  
 		}
 		// execute the query
 		$result = $this->mMysqli->query($query);
