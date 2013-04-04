@@ -546,30 +546,36 @@ function displayCourseStaffDetail(data, textStatus)
 
 function displayProjectList(data, textStatus) 
 {
-	var numReference = "<option value=''>Number</option>";
-	var nameReference = "<option value=''>Name</option>";
+	var numReference = "<select id='proj_num' class='selector'><option value=''>Number</option>";
+	var nameReference = "<select id='proj_name' class='selector'><option value=''>Name</option>";
 	
 	$.each(data.references, function(i, reference) {
 		numReference += "<option value='" + reference.id + "'>" + reference.id + "</option>";
 		nameReference += "<option value='" + reference.title + "'>" + reference.title + "</option>";
 	});
 	
-	$('#proj_num')[0].innerHTML = numReference;
-	$('#proj_name')[0].innerHTML = nameReference;
+	numReference += "</select>";
+	nameReference += "</select>";
+	
+	$('#proj_num')[0].outerHTML = numReference;
+	$('#proj_name')[0].outerHTML = nameReference;
 }
 
 function displayCourseList(data, textStatus) 
 {
-	var numReference = "<option value=''>Number</option>";
-	var nameReference = "<option value=''>Name</option>";
+	var numReference = "<select id='course_num'  class='selector'><option value=''>Number</option>";
+	var nameReference = "<select id='course_name'  class='selector'><option value=''>Name</option>";
 	
 	$.each(data.references, function(i, reference) {
 		numReference += "<option value='" + reference.id + "'>" + reference.id + "</option>";
 		nameReference += "<option value='" + reference.title + "'>" + reference.title + "</option>";
 	});
-	
-	$('#course_num')[0].innerHTML = numReference;
-	$('#course_name')[0].innerHTML = nameReference;
+
+	numReference += "</select>";
+	nameReference += "</select>";
+
+	$('#course_num')[0].outerHTML = numReference;
+	$('#course_name')[0].outerHTML = nameReference;
 }
 
 function displayCorresponding(data, t, s)

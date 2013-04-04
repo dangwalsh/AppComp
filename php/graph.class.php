@@ -175,7 +175,7 @@ class Graph
 		// check for valid staff id
 		if($id != '') {
 			// query to count attendance based on category			
-			$query = "SELECT fu.fun,
+			$query = "SELECT rv.rev,
 							 ds.des, 
 							 dc.doc, 
 							 co.coo, 
@@ -183,9 +183,9 @@ class Graph
 							 na.nav,
 							 re.rel
 					   FROM staff s
-					   		LEFT JOIN (SELECT staff_id, course_id, COUNT(staff_id) AS fun
+					   		LEFT JOIN (SELECT staff_id, course_id, COUNT(staff_id) AS rev
                      			FROM staff_courses WHERE course_id LIKE '%REV%'
-                    			GROUP BY staff_id) AS fu ON s.staff_id = fu.staff_id
+                    			GROUP BY staff_id) AS rv ON s.staff_id = rv.staff_id
 							LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS des
                      			FROM staff_courses WHERE course_id LIKE '%DES%'
                     			GROUP BY staff_id) AS ds ON s.staff_id = ds.staff_id
@@ -214,11 +214,11 @@ class Graph
 		if($result->num_rows) {			
 			// loop through all the fetched content
 			while ($row = $result->fetch_array(MYSQLI_ASSOC)) {				
-				$reference['Fundamentals'] = $row['fun'];
+				$reference['Standards'] = $row['rev'];
 				$reference['Design'] = $row['des'];
 				$reference['Documentation'] = $row['doc'];
 				$reference['Coordination'] = $row['coo'];
-				$reference['BIM Coordinator'] = $row['bim'];
+				$reference['BIMCoordinator'] = $row['bim'];
 				$reference['Navisworks'] = $row['nav'];	
 				$reference['Elective'] = $row['rel'];	
 			}

@@ -180,9 +180,6 @@ function controlForm()
 
 	$('#main').on('change', ':file', function(e) {
     	file = this.files[0];
-    	//var name = file.name;
-    	//var size = file.size;
-    	//var type = file.type;
     	var b = $('#bar');
 		var p = $('progress');		
 		p.width(b.width() - 100);

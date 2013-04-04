@@ -52,8 +52,8 @@ if ($mode == 'GetProjectList') {
 	$type = $_POST['type'];
 	$category = $_POST['category'];
 	$subcategory = $_POST['subcategory'];
-	$title = $_POST['title'];
-	$content = $_POST['content'];
+	$title = mysql_real_escape_string(trim($_POST['title']));
+	$content = mysql_real_escape_string(trim($_POST['content']));
 	$cid = $_POST['cid'];
 	// call header function	
 	sendHeaders();

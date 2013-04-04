@@ -62,14 +62,14 @@ class Content
 		
 		if($id != '') {
 			// this query needs to use the $table variable once it is functional
-			$query = "SELECT s.staff_id, s.last_name, s.first_name, fu.fun, ds.des, dc.doc, co.coo, bi.bim, na.nav, el.ele, t.tot 
+			$query = "SELECT s.staff_id, s.last_name, s.first_name, re.rev, ds.des, dc.doc, co.coo, bi.bim, na.nav, el.ele, t.tot 
 					   FROM staff s
 							LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS tot
                      			FROM staff_courses
                     			GROUP BY staff_id) AS t ON s.staff_id = t.staff_id
-                    		LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS fun
+                    		LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS rev
                      			FROM staff_courses WHERE course_id LIKE '%REV%'
-                    			GROUP BY staff_id) AS fu ON s.staff_id = fu.staff_id
+                    			GROUP BY staff_id) AS re ON s.staff_id = re.staff_id
 							LEFT JOIN (SELECT staff_id, COUNT(staff_id) AS des
                      			FROM staff_courses WHERE course_id LIKE '%DES%'
                     			GROUP BY staff_id) AS ds ON s.staff_id = ds.staff_id
@@ -104,7 +104,7 @@ class Content
 				$reference['staff_id'] = $row['staff_id'];
 				$reference['last_name'] = $row['last_name'];
 				$reference['first_name'] = $row['first_name'];
-				$reference['fun_tot'] = $row['fun'];
+				$reference['fun_tot'] = $row['rev'];
 				$reference['des_tot'] = $row['des'];
 				$reference['doc_tot'] = $row['doc'];
 				$reference['coo_tot'] = $row['coo'];
