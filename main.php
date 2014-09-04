@@ -89,7 +89,7 @@ echo <<<EOT
 				<table id="footerT">
 					<tr>
 						<td><a href="*">Contact</a></td>
-						<td><a href="http://enneadintranet/">Intranet</a></td>
+						<td><a href="http://eaintranet/">Intranet</a></td>
 						<td><a href="http://www.ennead.com">Ennead</a></td>
 					</tr>					
 				</table>
