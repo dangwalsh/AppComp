@@ -88,7 +88,7 @@ echo <<<EOT
 			<footer>
 				<table id="footerT">
 					<tr>
-						<td><a href="*">Contact</a></td>
+						<td><a href="mailto:dwalsh@ennead.com?Subject=Help!" target="_top">Contact</a></td>
 						<td><a href="http://eaintranet/">Intranet</a></td>
 						<td><a href="http://www.ennead.com">Ennead</a></td>
 					</tr>					
